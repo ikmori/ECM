@@ -83,7 +83,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\helbe\\.nuget\\packages\\": {},
+    "C:\\Users\\Lenovo\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
@@ -92,14 +92,14 @@
       "projectUniqueName": "C:\\ECM\\ECM.Api\\ECM.Api.csproj",
       "projectName": "ECM.Api",
       "projectPath": "C:\\ECM\\ECM.Api\\ECM.Api.csproj",
-      "packagesPath": "C:\\Users\\helbe\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
       "outputPath": "C:\\ECM\\ECM.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\helbe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
