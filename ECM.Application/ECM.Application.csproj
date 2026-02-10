@@ -8,10 +8,12 @@
 
     <ItemGroup>
       <Folder Include="DTO\" />
-      <Folder Include="Interfaces\RepositoriesInterfaces\" />
-      <Folder Include="Interfaces\ServicesInterfaces\" />
       <Folder Include="Mappers\" />
       <Folder Include="Services\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\ECM.Domain\ECM.Domain.csproj" />
     </ItemGroup>
 
 </Project>

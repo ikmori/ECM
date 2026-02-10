@@ -1,37 +1,67 @@
 {
   "version": 3,
   "targets": {
-    "net10.0": {}
+    "net10.0": {
+      "ECM.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/ECM.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ECM.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "ECM.Domain/1.0.0": {
+      "type": "project",
+      "path": "../ECM.Domain/ECM.Domain.csproj",
+      "msbuildProject": "../ECM.Domain/ECM.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net10.0": []
+    "net10.0": [
+      "ECM.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
-    "/Users/mori/.nuget/packages/": {}
+    "C:\\Users\\ferna\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mori/RiderProjects/Proyecto Plataforma Web de  Comercio electrónico/ECM.Application/ECM.Application.csproj",
+      "projectUniqueName": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Application\\ECM.Application.csproj",
       "projectName": "ECM.Application",
-      "projectPath": "/Users/mori/RiderProjects/Proyecto Plataforma Web de  Comercio electrónico/ECM.Application/ECM.Application.csproj",
-      "packagesPath": "/Users/mori/.nuget/packages/",
-      "outputPath": "/Users/mori/RiderProjects/Proyecto Plataforma Web de  Comercio electrónico/ECM.Application/obj/",
+      "projectPath": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Application\\ECM.Application.csproj",
+      "packagesPath": "C:\\Users\\ferna\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Application\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/mori/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\ferna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\ECM.Domain.csproj": {
+              "projectPath": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\ECM.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -65,7 +95,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.101/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",
