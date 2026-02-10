@@ -1,6 +1,6 @@
 using ECM.Domain.Base;
 
-namespace ECM.Domain.Entities;
+namespace ECM.Domain.Entities.Identidades;
 
 public class Address : BaseEntity
 {
@@ -13,4 +13,9 @@ public class Address : BaseEntity
     // FK
     public int UserId { get; set; }
     public User User { get; set; } = null!;
+
+    public Address()
+    {
+        
+    }
 }

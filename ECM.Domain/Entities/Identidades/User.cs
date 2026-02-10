@@ -1,10 +1,10 @@
 using ECM.Domain.Base;
 using ECM.Domain.Common.Enums;
-using ECM.Domain.Entities.Módulo_de_Catálogo;
-using ECM.Domain.Entities.Módulo_de_Logística_y_Marketing;
-using ECM.Domain.Entities.Módulo_de_Ventas_y_Pedidos;
+using ECM.Domain.Entities.Catalogo;
+using ECM.Domain.Entities.Logistica;
+using ECM.Domain.Entities.Ventas;
 
-namespace ECM.Domain.Entities;
+namespace ECM.Domain.Entities.Identidades;
 
 public class User : BaseEntity
 {
@@ -27,4 +27,9 @@ public class User : BaseEntity
     public ICollection<Order> Orders { get; set; } = new List<Order>();
     public ICollection<WishlistItem> Wishlist { get; set; } = new List<WishlistItem>();
     public ICollection<Review> Reviews { get; set; } = new List<Review>();
+
+    public User()
+    {
+        
+    }
 }
