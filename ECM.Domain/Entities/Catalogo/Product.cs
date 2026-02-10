@@ -1,7 +1,7 @@
 using ECM.Domain.Base;
-using ECM.Domain.Entities.Módulo_de_Logística_y_Marketing;
+using ECM.Domain.Entities.Logistica;
 
-namespace ECM.Domain.Entities.Módulo_de_Catálogo;
+namespace ECM.Domain.Entities.Catalogo;
 
 public class Product : BaseEntity
 {
@@ -18,4 +18,9 @@ public class Product : BaseEntity
 
     public ICollection<ProductImage> Images { get; set; } = new List<ProductImage>(); 
     public ICollection<Review> Reviews { get; set; } = new List<Review>();
+
+    public Product()
+    {
+        
+    }
 }

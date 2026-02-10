@@ -1,7 +1,7 @@
 using ECM.Domain.Base;
-using ECM.Domain.Entities.Módulo_de_Catálogo;
+using ECM.Domain.Entities.Catalogo;
 
-namespace ECM.Domain.Entities.Módulo_de_Ventas_y_Pedidos;
+namespace ECM.Domain.Entities.Ventas;
 
 public class OrderItem : BaseEntity
 {
@@ -13,5 +13,10 @@ public class OrderItem : BaseEntity
 
     public string ProductName { get; set; } = string.Empty; 
     public int Quantity { get; set; }
-    public decimal UnitPrice { get; set; } 
+    public decimal UnitPrice { get; set; }
+
+    public OrderItem()
+    {
+        
+    }
 }

@@ -1,7 +1,8 @@
 using ECM.Domain.Base;
-using ECM.Domain.Entities.Módulo_de_Catálogo;
+using ECM.Domain.Entities.Catalogo;
+using ECM.Domain.Entities.Identidades;
 
-namespace ECM.Domain.Entities.Módulo_de_Logística_y_Marketing;
+namespace ECM.Domain.Entities.Logistica;
 
 public class Review : BaseEntity
 {
@@ -13,4 +14,9 @@ public class Review : BaseEntity
 
     public int Rating { get; set; } 
     public string? Comment { get; set; }
+
+    public Review()
+    {
+        
+    }
 }

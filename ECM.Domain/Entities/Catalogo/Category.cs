@@ -1,6 +1,6 @@
 using ECM.Domain.Base;
 
-namespace ECM.Domain.Entities.Módulo_de_Catálogo;
+namespace ECM.Domain.Entities.Catalogo;
 
 public class Category : BaseEntity
 {
@@ -13,4 +13,10 @@ public class Category : BaseEntity
     public Category? ParentCategory { get; set; }
         
     public ICollection<Product> Products { get; set; } = new List<Product>();
+
+    public Category()
+    {
+        
+    }
+   
 }

@@ -1,8 +1,8 @@
 using ECM.Domain.Base;
 using ECM.Domain.Common.Enums;
-using ECM.Domain.Entities.Módulo_de_Ventas_y_Pedidos;
+using ECM.Domain.Entities.Ventas;
 
-namespace ECM.Domain.Entities.Módulo_de_Logística_y_Marketing;
+namespace ECM.Domain.Entities.Logistica;
 
 public class Coupon : BaseEntity
 {
@@ -15,4 +15,9 @@ public class Coupon : BaseEntity
     public int TimesUsed { get; set; }
         
     public ICollection<Order> Orders { get; set; } = new List<Order>();
+
+    public Coupon()
+    {
+        
+    }
 }

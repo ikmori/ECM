@@ -1,8 +1,8 @@
 using ECM.Domain.Base;
 using ECM.Domain.Common.Enums;
-using ECM.Domain.Entities.Módulo_de_Ventas_y_Pedidos;
+using ECM.Domain.Entities.Ventas;
 
-namespace ECM.Domain.Entities.Módulo_de_Logística_y_Marketing;
+namespace ECM.Domain.Entities.Logistica;
 
 // Gestión de Envíos y Tracking
 public class Shipment : BaseEntity
@@ -15,6 +15,11 @@ public class Shipment : BaseEntity
     public ShipmentStatus Status { get; set; } = ShipmentStatus.Preparing;
     public DateTime? EstimatedDeliveryDate { get; set; }
     public DateTime? ActualDeliveryDate { get; set; }
+
+    public Shipment()
+    {
+        
+    }
 }
 
 

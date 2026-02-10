@@ -1,8 +1,9 @@
 using ECM.Domain.Base;
 using ECM.Domain.Common.Enums;
-using ECM.Domain.Entities.Módulo_de_Logística_y_Marketing;
+using ECM.Domain.Entities.Identidades;
+using ECM.Domain.Entities.Logistica;
 
-namespace ECM.Domain.Entities.Módulo_de_Ventas_y_Pedidos;
+namespace ECM.Domain.Entities.Ventas;
 
 public class Order : BaseEntity
 {
@@ -26,5 +27,10 @@ public class Order : BaseEntity
     public Coupon? Coupon { get; set; }
 
     public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
-    public Shipment? Shipment { get; set; } 
+    public Shipment? Shipment { get; set; }
+
+    public Order()
+    {
+        
+    }
 }
