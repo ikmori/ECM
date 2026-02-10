@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ECM.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b93fe03aa986e7d16e76a30e38aeb8c7da75c72")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5bf3074abf37fb9667fea04b1d4b973b9f7af97e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ECM.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ECM.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
