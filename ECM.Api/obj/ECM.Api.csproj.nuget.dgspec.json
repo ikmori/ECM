@@ -57,6 +57,10 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[10.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[10.0.2, )"
             }
           },
           "imports": [
@@ -556,9 +560,9 @@
               "target": "Package",
               "version": "[10.0.2, )"
             },
-            "Microsoft.EntityFrameworkCore.InMemory": {
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[10.0.2, )"
+              "version": "[10.0.0, )"
             }
           },
           "imports": [

@@ -1,0 +1,16 @@
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\bin\Debug\net10.0\ECM.Application.deps.json
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\bin\Debug\net10.0\ECM.Application.dll
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\bin\Debug\net10.0\ECM.Application.pdb
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\bin\Debug\net10.0\ECM.Domain.dll
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\bin\Debug\net10.0\ECM.Domain.pdb
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\obj\Debug\net10.0\ECM.Application.csproj.AssemblyReference.cache
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\obj\Debug\net10.0\ECM.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\obj\Debug\net10.0\ECM.Application.AssemblyInfoInputs.cache
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\obj\Debug\net10.0\ECM.Application.AssemblyInfo.cs
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\obj\Debug\net10.0\ECM.Application.csproj.CoreCompileInputs.cache
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\obj\Debug\net10.0\ECM.Application.sourcelink.json
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\obj\Debug\net10.0\ECM.Appl.E2F7CC22.Up2Date
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\obj\Debug\net10.0\ECM.Application.dll
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\obj\Debug\net10.0\refint\ECM.Application.dll
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\obj\Debug\net10.0\ECM.Application.pdb
+C:\Proyecto Plataforma Web de  Comercio electrónico\ECM.Application\obj\Debug\net10.0\ref\ECM.Application.dll
