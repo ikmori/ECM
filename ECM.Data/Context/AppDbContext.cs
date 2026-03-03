@@ -4,8 +4,7 @@ using ECM.Domain.Entities.Logistica;
 using ECM.Domain.Entities.Ventas;
 using Microsoft.EntityFrameworkCore;
 
-
-namespace ECM.Data;
+namespace ECM.Data.Context;
 
 public class AppDbContext: DbContext
 {

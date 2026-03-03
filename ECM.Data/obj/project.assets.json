@@ -414,24 +414,6 @@
           "build/net10.0/Microsoft.EntityFrameworkCore.Design.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.InMemory/10.0.2": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "10.0.2",
-          "Microsoft.Extensions.Caching.Memory": "10.0.2",
-          "Microsoft.Extensions.Logging": "10.0.2"
-        },
-        "compile": {
-          "lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Microsoft.EntityFrameworkCore.Relational/10.0.2": {
         "type": "package",
         "dependencies": {
@@ -1979,21 +1961,6 @@
         "microsoft.entityframeworkcore.design.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.InMemory/10.0.2": {
-      "sha512": "tW3LlDffLljRCGG6w7D1Uz8eI7r+uZ/prpCKutlp+ZILTjxHmkYGYQg+veBbjZ1nZe5vpIr3Z51qMF6rlmdX5A==",
-      "type": "package",
-      "path": "microsoft.entityframeworkcore.inmemory/10.0.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "PACKAGE.md",
-        "lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll",
-        "lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.xml",
-        "microsoft.entityframeworkcore.inmemory.10.0.2.nupkg.sha512",
-        "microsoft.entityframeworkcore.inmemory.nuspec"
-      ]
-    },
     "Microsoft.EntityFrameworkCore.Relational/10.0.2": {
       "sha512": "1fUeyNmqDNfMogJ2ut7OKO57/WGjjkHMYeX51SpA3PwP7ftbx8g/Z3fbErD+1q14DILrqJfsszYsYhGssBRfDg==",
       "type": "package",
@@ -2626,44 +2593,36 @@
     "net10.0": [
       "ECM.Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 10.0.2",
-      "Microsoft.EntityFrameworkCore.Design >= 10.0.2",
-      "Microsoft.EntityFrameworkCore.InMemory >= 10.0.2"
+      "Microsoft.EntityFrameworkCore.Design >= 10.0.2"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "/Users/mori/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Data\\ECM.Data.csproj",
+      "projectUniqueName": "/Users/mori/RiderProjects/Proyecto Plataforma Web de  Comercio electrónico/ECM.Data/ECM.Data.csproj",
       "projectName": "ECM.Data",
-      "projectPath": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Data\\ECM.Data.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Data\\obj\\",
+      "projectPath": "/Users/mori/RiderProjects/Proyecto Plataforma Web de  Comercio electrónico/ECM.Data/ECM.Data.csproj",
+      "packagesPath": "/Users/mori/.nuget/packages/",
+      "outputPath": "/Users/mori/RiderProjects/Proyecto Plataforma Web de  Comercio electrónico/ECM.Data/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/mori/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\ECM.Domain.csproj": {
-              "projectPath": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\ECM.Domain.csproj"
+            "/Users/mori/RiderProjects/Proyecto Plataforma Web de  Comercio electrónico/ECM.Domain/ECM.Domain.csproj": {
+              "projectPath": "/Users/mori/RiderProjects/Proyecto Plataforma Web de  Comercio electrónico/ECM.Domain/ECM.Domain.csproj"
             }
           }
         }
@@ -2693,10 +2652,6 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[10.0.2, )"
-          },
-          "Microsoft.EntityFrameworkCore.InMemory": {
-            "target": "Package",
-            "version": "[10.0.2, )"
           }
         },
         "imports": [
@@ -2715,7 +2670,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\User\\.dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.101/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

@@ -1,8 +1,7 @@
-using Domain.Interfaces.Repositories;
+using ECM.Application.Interfaces.BaseRepository;
 using ECM.Domain.Entities.Ventas;
 
-
-namespace ECM.Application.Interfaces.Respository.Pedidos_y_Ventas;
+namespace ECM.Application.Interfaces.Respository.Ventas;
 
 public interface IOrderRepository
 {
