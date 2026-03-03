@@ -1,7 +1,7 @@
-using Domain.Interfaces.Repositories;
+using ECM.Application.Interfaces.BaseRepository;
 using ECM.Domain.Entities.Catalogo;
 
-namespace ECM.Application.Interfaces.Respository.Catálogo;
+namespace ECM.Application.Interfaces.Respository.Catalogo;
 
 public interface ICategoryRepository
 {
