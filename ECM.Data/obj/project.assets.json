@@ -414,24 +414,6 @@
           "build/net10.0/Microsoft.EntityFrameworkCore.Design.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.InMemory/10.0.2": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "10.0.2",
-          "Microsoft.Extensions.Caching.Memory": "10.0.2",
-          "Microsoft.Extensions.Logging": "10.0.2"
-        },
-        "compile": {
-          "lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Microsoft.EntityFrameworkCore.Relational/10.0.2": {
         "type": "package",
         "dependencies": {
@@ -441,7 +423,7 @@
           "Microsoft.Extensions.Logging": "10.0.2"
         },
         "compile": {
-          "lib/net10.0/_._": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll": {
             "related": ".xml"
           }
         },
@@ -499,7 +481,7 @@
           "Microsoft.Extensions.Primitives": "10.0.2"
         },
         "compile": {
-          "lib/net10.0/_._": {
+          "lib/net10.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
             "related": ".xml"
           }
         },
@@ -676,6 +658,40 @@
         },
         "runtime": {
           "lib/net6.0/Newtonsoft.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Npgsql/10.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "10.0.0"
+        },
+        "compile": {
+          "lib/net10.0/Npgsql.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Npgsql.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "[10.0.0, 11.0.0)",
+          "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, 11.0.0)",
+          "Npgsql": "10.0.0"
+        },
+        "compile": {
+          "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
             "related": ".xml"
           }
         }
@@ -1979,21 +1995,6 @@
         "microsoft.entityframeworkcore.design.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.InMemory/10.0.2": {
-      "sha512": "tW3LlDffLljRCGG6w7D1Uz8eI7r+uZ/prpCKutlp+ZILTjxHmkYGYQg+veBbjZ1nZe5vpIr3Z51qMF6rlmdX5A==",
-      "type": "package",
-      "path": "microsoft.entityframeworkcore.inmemory/10.0.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "PACKAGE.md",
-        "lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll",
-        "lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.xml",
-        "microsoft.entityframeworkcore.inmemory.10.0.2.nupkg.sha512",
-        "microsoft.entityframeworkcore.inmemory.nuspec"
-      ]
-    },
     "Microsoft.EntityFrameworkCore.Relational/10.0.2": {
       "sha512": "1fUeyNmqDNfMogJ2ut7OKO57/WGjjkHMYeX51SpA3PwP7ftbx8g/Z3fbErD+1q14DILrqJfsszYsYhGssBRfDg==",
       "type": "package",
@@ -2430,6 +2431,40 @@
         "packageIcon.png"
       ]
     },
+    "Npgsql/10.0.0": {
+      "sha512": "xZAYhPOU2rUIFpV48xsqhCx9vXs6Y+0jX2LCoSEfDFYMw9jtAOUk3iQsCnDLrFIv9NT3JGMihn7nnuZsPKqJmA==",
+      "type": "package",
+      "path": "npgsql/10.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net10.0/Npgsql.dll",
+        "lib/net10.0/Npgsql.xml",
+        "lib/net8.0/Npgsql.dll",
+        "lib/net8.0/Npgsql.xml",
+        "lib/net9.0/Npgsql.dll",
+        "lib/net9.0/Npgsql.xml",
+        "npgsql.10.0.0.nupkg.sha512",
+        "npgsql.nuspec",
+        "postgresql.png"
+      ]
+    },
+    "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.0": {
+      "sha512": "E2+uSWxSB8LdsUVwPaqRWOcGOP92biry2JEwc0KJMdLJF+aZdczeIdEXVwEyv4nSVMQJH0o8tLhyAMiR6VF0lw==",
+      "type": "package",
+      "path": "npgsql.entityframeworkcore.postgresql/10.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll",
+        "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.xml",
+        "npgsql.entityframeworkcore.postgresql.10.0.0.nupkg.sha512",
+        "npgsql.entityframeworkcore.postgresql.nuspec",
+        "postgresql.png"
+      ]
+    },
     "System.CodeDom/6.0.0": {
       "sha512": "CPc6tWO1LAer3IzfZufDBRL+UZQcj5uS207NHALQzP84Vp/z6wF0Aa0YZImOQY8iStY0A2zI/e3ihKNPfUm8XA==",
       "type": "package",
@@ -2627,7 +2662,7 @@
       "ECM.Domain >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 10.0.2",
       "Microsoft.EntityFrameworkCore.Design >= 10.0.2",
-      "Microsoft.EntityFrameworkCore.InMemory >= 10.0.2"
+      "Npgsql.EntityFrameworkCore.PostgreSQL >= 10.0.0"
     ]
   },
   "packageFolders": {
@@ -2694,9 +2729,9 @@
             "target": "Package",
             "version": "[10.0.2, )"
           },
-          "Microsoft.EntityFrameworkCore.InMemory": {
+          "Npgsql.EntityFrameworkCore.PostgreSQL": {
             "target": "Package",
-            "version": "[10.0.2, )"
+            "version": "[10.0.0, )"
           }
         },
         "imports": [
