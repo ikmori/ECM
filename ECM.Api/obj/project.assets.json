@@ -60,18 +60,18 @@
       "Microsoft.EntityFrameworkCore.Analyzers/10.0.2": {
         "type": "package"
       },
-      "Microsoft.EntityFrameworkCore.Relational/10.0.0": {
+      "Microsoft.EntityFrameworkCore.InMemory/10.0.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "10.0.0"
+          "Microsoft.EntityFrameworkCore": "10.0.2"
         },
         "compile": {
-          "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll": {
+          "lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
             "related": ".xml"
           }
         }
@@ -89,44 +89,13 @@
           }
         }
       },
-      "Npgsql/10.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net10.0/Npgsql.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Npgsql.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.EntityFrameworkCore": "[10.0.0, 11.0.0)",
-          "Microsoft.EntityFrameworkCore.Relational": "[10.0.0, 11.0.0)",
-          "Npgsql": "10.0.0"
-        },
-        "compile": {
-          "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "ECM.Data/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
           "ECM.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "10.0.2",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.0"
+          "Microsoft.EntityFrameworkCore.InMemory": "10.0.2"
         },
         "compile": {
           "bin/placeholder/ECM.Data.dll": {}
@@ -211,19 +180,19 @@
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Relational/10.0.0": {
-      "sha512": "A3MX1ee7RDxWCUdx/KqP+74fbksz0UIhkVZh56YHvbPkEKsffCXgHU3LGkRDwqR/MrBNWLCWC/IVX79tzM30ZA==",
+    "Microsoft.EntityFrameworkCore.InMemory/10.0.2": {
+      "sha512": "tW3LlDffLljRCGG6w7D1Uz8eI7r+uZ/prpCKutlp+ZILTjxHmkYGYQg+veBbjZ1nZe5vpIr3Z51qMF6rlmdX5A==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.relational/10.0.0",
+      "path": "microsoft.entityframeworkcore.inmemory/10.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "PACKAGE.md",
-        "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll",
-        "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.xml",
-        "microsoft.entityframeworkcore.relational.10.0.0.nupkg.sha512",
-        "microsoft.entityframeworkcore.relational.nuspec"
+        "lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.dll",
+        "lib/net10.0/Microsoft.EntityFrameworkCore.InMemory.xml",
+        "microsoft.entityframeworkcore.inmemory.10.0.2.nupkg.sha512",
+        "microsoft.entityframeworkcore.inmemory.nuspec"
       ]
     },
     "Microsoft.OpenApi/2.0.0": {
@@ -244,40 +213,6 @@
         "microsoft.openapi.nuspec"
       ]
     },
-    "Npgsql/10.0.0": {
-      "sha512": "xZAYhPOU2rUIFpV48xsqhCx9vXs6Y+0jX2LCoSEfDFYMw9jtAOUk3iQsCnDLrFIv9NT3JGMihn7nnuZsPKqJmA==",
-      "type": "package",
-      "path": "npgsql/10.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "lib/net10.0/Npgsql.dll",
-        "lib/net10.0/Npgsql.xml",
-        "lib/net8.0/Npgsql.dll",
-        "lib/net8.0/Npgsql.xml",
-        "lib/net9.0/Npgsql.dll",
-        "lib/net9.0/Npgsql.xml",
-        "npgsql.10.0.0.nupkg.sha512",
-        "npgsql.nuspec",
-        "postgresql.png"
-      ]
-    },
-    "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.0": {
-      "sha512": "E2+uSWxSB8LdsUVwPaqRWOcGOP92biry2JEwc0KJMdLJF+aZdczeIdEXVwEyv4nSVMQJH0o8tLhyAMiR6VF0lw==",
-      "type": "package",
-      "path": "npgsql.entityframeworkcore.postgresql/10.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll",
-        "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.xml",
-        "npgsql.entityframeworkcore.postgresql.10.0.0.nupkg.sha512",
-        "npgsql.entityframeworkcore.postgresql.nuspec",
-        "postgresql.png"
-      ]
-    },
     "ECM.Data/1.0.0": {
       "type": "project",
       "path": "../ECM.Data/ECM.Data.csproj",
@@ -296,23 +231,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ferna\\.nuget\\packages\\": {},
+    "C:\\Users\\User\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Api\\ECM.Api.csproj",
+      "projectUniqueName": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Api\\ECM.Api.csproj",
       "projectName": "ECM.Api",
-      "projectPath": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Api\\ECM.Api.csproj",
-      "packagesPath": "C:\\Users\\ferna\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Api\\obj\\",
+      "projectPath": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Api\\ECM.Api.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\ferna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -327,8 +262,8 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Data\\ECM.Data.csproj": {
-              "projectPath": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Data\\ECM.Data.csproj"
+            "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Data\\ECM.Data.csproj": {
+              "projectPath": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Data\\ECM.Data.csproj"
             }
           }
         }
@@ -373,7 +308,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Users\\User\\.dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

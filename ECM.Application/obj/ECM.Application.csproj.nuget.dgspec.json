@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Application\\ECM.Application.csproj": {}
+    "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Application\\ECM.Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Application\\ECM.Application.csproj": {
+    "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Application\\ECM.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Application\\ECM.Application.csproj",
+        "projectUniqueName": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Application\\ECM.Application.csproj",
         "projectName": "ECM.Application",
-        "projectPath": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Application\\ECM.Application.csproj",
-        "packagesPath": "C:\\Users\\ferna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Application\\obj\\",
+        "projectPath": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Application\\ECM.Application.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ferna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\ECM.Domain.csproj": {
-                "projectPath": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\ECM.Domain.csproj"
+              "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\ECM.Domain.csproj": {
+                "projectPath": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\ECM.Domain.csproj"
               }
             }
           }
@@ -69,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Users\\User\\.dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -347,20 +347,20 @@
         }
       }
     },
-    "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\ECM.Domain.csproj": {
+    "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\ECM.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\ECM.Domain.csproj",
+        "projectUniqueName": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\ECM.Domain.csproj",
         "projectName": "ECM.Domain",
-        "projectPath": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\ECM.Domain.csproj",
-        "packagesPath": "C:\\Users\\ferna\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ferna\\RiderProjects\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\obj\\",
+        "projectPath": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\ECM.Domain.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Proyecto Plataforma Web de  Comercio electrónico\\ECM.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ferna\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -408,7 +408,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Users\\User\\.dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
