@@ -1,0 +1,14 @@
+# Directorios de compilación
+bin/
+obj/
+
+# Configuración de Rider e IntelliJ
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Archivos de usuario y temporales
+*.sln.DotSettings.user
+*.user
+.DS_Store
