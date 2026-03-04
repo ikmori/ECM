@@ -1,7 +1,4 @@
-
-using ECM.Domain.Entities.Identidades;
-
-namespace Domain.Interfaces.Repositories
+namespace ECM.Application.Interfaces.ServicesInterfaces.Servicio_Base
 {
     public interface IBaseService<T> where T : class
     {

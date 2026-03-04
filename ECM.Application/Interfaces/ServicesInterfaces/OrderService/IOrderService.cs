@@ -1,4 +1,4 @@
-using Domain.Interfaces.Repositories;
+using ECM.Application.Interfaces.ServicesInterfaces.Servicio_Base;
 using ECM.Domain.Entities.Ventas;
 
 namespace ECM.Application.Interfaces.ServicesInterfaces.OrderService;
