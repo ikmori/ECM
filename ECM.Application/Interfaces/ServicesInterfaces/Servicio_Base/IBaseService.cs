@@ -1,7 +1,8 @@
 
-using ECM.Domain.Entities.Identidades;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace Domain.Interfaces.Repositories
+namespace ECM.Application.Interfaces.ServicesInterfaces.Servicio_Base
 {
     public interface IBaseService<T> where T : class
     {

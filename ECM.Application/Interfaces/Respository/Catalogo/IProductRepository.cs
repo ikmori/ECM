@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using ECM.Application.Interfaces.BaseRepository;
 using ECM.Domain.Entities.Catalogo;
 

@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace ECM.Application.Interfaces.ServicesInterfaces.CouponService;
 
 public interface ICouponService

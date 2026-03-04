@@ -10,7 +10,6 @@
       <Folder Include="Repositories\Catalogo\" />
       <Folder Include="Repositories\Identidades\" />
       <Folder Include="Repositories\Logistica\" />
-      <Folder Include="Repositories\Ventas\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -22,6 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ECM.Application\ECM.Application.csproj" />
       <ProjectReference Include="..\ECM.Domain\ECM.Domain.csproj" />
     </ItemGroup>
 
