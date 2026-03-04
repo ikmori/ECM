@@ -16,7 +16,7 @@ public class User : BaseEntity
     
     // Por defecto
     public UserRole Role { get; set; } = UserRole.Customer; 
-
+    
     // Para Login Social (Google/Facebook)
     public string? SocialProvider { get; set; } 
     public string? SocialProviderKey { get; set; }
