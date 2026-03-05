@@ -9,7 +9,6 @@
     <ItemGroup>
       <Folder Include="Repositories\Catalogo\" />
       <Folder Include="Repositories\Logistica\" />
-      <Folder Include="Repositories\Ventas\" />
     </ItemGroup>
 
     <ItemGroup>

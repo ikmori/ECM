@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using ECM.Application.Interfaces.ServicesInterfaces.Servicio_Base;
 using ECM.Domain.Entities.Catalogo;
 

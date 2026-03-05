@@ -16,7 +16,6 @@
       <Folder Include="Mappers\Ventas\" />
       <Folder Include="Services\Catalogo\" />
       <Folder Include="Services\Logistica\" />
-      <Folder Include="Services\Ventas\" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
+using ECM.Domain.Entities.Ventas;
 
 namespace  ECM.Application.Interfaces.BaseRepository
 {

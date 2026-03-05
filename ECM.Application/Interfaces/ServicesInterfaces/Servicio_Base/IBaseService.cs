@@ -1,3 +1,7 @@
+
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 namespace ECM.Application.Interfaces.ServicesInterfaces.Servicio_Base
 {
     public interface IBaseService<T> where T : class

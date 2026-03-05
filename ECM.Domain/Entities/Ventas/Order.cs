@@ -16,7 +16,7 @@ public class Order : BaseEntity
     public OrderStatus Status { get; set; } = OrderStatus.Pending;
     public string? PaymentTransactionId { get; set; } 
 
-    // Datos de Envío Snapshot (Se guardan aquí por si el usuario cambia su dirección después)
+    
     public string ShippingAddress { get; set; } = string.Empty; 
         
     // FKs
