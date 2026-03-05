@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <Folder Include="DTO\Catalogo\" />
-      <Folder Include="DTO\Identidades\" />
       <Folder Include="DTO\Logistica\" />
       <Folder Include="DTO\Ventas\" />
       <Folder Include="Mappers\Catalogo\" />
@@ -16,7 +15,6 @@
       <Folder Include="Mappers\Logistica\" />
       <Folder Include="Mappers\Ventas\" />
       <Folder Include="Services\Catalogo\" />
-      <Folder Include="Services\Identidades\" />
       <Folder Include="Services\Logistica\" />
     </ItemGroup>
 
