@@ -8,7 +8,7 @@ namespace  ECM.Application.Interfaces.BaseRepository
     public interface IBaseRepository<T> where T : class
     {
         
-        Task<Order> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(int id);
         Task<IEnumerable<T>> GetAllAsync();
         
         Task<T> AddAsync(T entity);
