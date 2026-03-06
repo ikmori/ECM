@@ -7,9 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="DTO\" />
-      <Folder Include="Mappers\" />
-      <Folder Include="Services\" />
+      <Folder Include="DTO\Catalogo\" />
+      <Folder Include="DTO\Logistica\" />
+      <Folder Include="DTO\Ventas\" />
+      <Folder Include="Mappers\Catalogo\" />
+      <Folder Include="Mappers\Identidades\" />
+      <Folder Include="Mappers\Logistica\" />
+      <Folder Include="Mappers\Ventas\" />
+      <Folder Include="Services\Catalogo\" />
+      <Folder Include="Services\Logistica\" />
     </ItemGroup>
 
     <ItemGroup>

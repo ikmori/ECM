@@ -1,7 +1,8 @@
-using Domain.Interfaces.Repositories;
+using System.Threading.Tasks;
+using ECM.Application.Interfaces.BaseRepository;
 using ECM.Domain.Entities.Logistica;
 
-namespace ECM.Application.Interfaces.Respository.Marketing;
+namespace ECM.Application.Interfaces.Respository.Logistica;
 
 public interface ICouponRepository
 {
