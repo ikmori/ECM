@@ -18,83 +18,42 @@ public class AddressRepository : IAddressRepository
         _context = context;
     }
 
-    public async Task<Address> GetByIdAsync(int id)
+    public async Task<Address?> GetByIdAsync(int id)
     {
-        if (id <= 0)
-        {
-            throw new ArgumentException("El id no puede ser menor o igual a 0", nameof(id));
-        }
-
-        var address = await _context.Adresses.FindAsync(id);
-        
-        if (address == null)
-        {
-            throw new KeyNotFoundException($"No se encontró la dirección con el ID {id}.");
-        }
-        
-        return address;
+        return await _context.Adresses.FindAsync(id);
     }
 
     public async Task<IEnumerable<Address>> GetAllAsync()
     {
-        var addresses = await _context.Adresses.ToListAsync();
-        return addresses;
+        return await _context.Adresses.ToListAsync();
     }
 
-    public async Task<Address> AddAsync(Address entity)
+    public async Task<Address?> AddAsync(Address entity)
     {
-        if (entity == null)
-        {
-            throw new ArgumentNullException(nameof(entity), "La dirección a agregar no puede ser nula.");
-        }
-
         var address = await _context.Adresses.AddAsync(entity);
         await _context.SaveChangesAsync(); 
         return address.Entity;
     }
 
-    public async Task<Address> Update(Address entity, int id)
+    public async Task<Address?> Update(Address entity, int id)
     {
-        if (id <= 0)
-        {
-            throw new ArgumentException("El id no puede ser menor o igual a 0", nameof(id));
-        }
-
-        if (entity == null)
-        {
-            throw new ArgumentNullException(nameof(entity), "La entidad a actualizar no puede ser nula.");
-        }
-
         var address = await _context.Adresses.FindAsync(id);
         
-        if (address == null)
-        {
-            throw new KeyNotFoundException($"No se encontró la dirección con el ID {id}.");
-        }
+        if (address == null) return null;
 
         _context.Entry(address).CurrentValues.SetValues(entity);
-        
         await _context.SaveChangesAsync();
         
         return address;
     }
 
-    public async Task<Address> Disable(int id)
+    public async Task<Address?> Disable(int id)
     {
-        if (id <= 0)
-        {
-            throw new ArgumentException("El id no puede ser menor o igual a 0", nameof(id));
-        }
-
         var address = await _context.Adresses.FindAsync(id);
         
-        if (address == null)
-        {
-            throw new KeyNotFoundException($"No se encontró la dirección con el ID {id}.");
-        }
+        if (address == null) return null;
 
         address.IsActive = false;
-        
         await _context.SaveChangesAsync(); 
         
         return address;
