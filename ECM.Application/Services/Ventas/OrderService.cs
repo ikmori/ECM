@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using ECM.Domain.Common;
 using ECM.Application.Interfaces.Respository.Ventas;
 using ECM.Application.Interfaces.ServicesInterfaces.OrderService;
 using ECM.Domain.Common.Enums;
@@ -14,53 +18,59 @@ namespace ECM.Application.Services.Ventas
             _orderRepository = orderRepository;
         }
 
-        public async Task<Order?> GetByIdAsync(int id)
+        public async Task<OperationResult<Order>> GetByIdAsync(int id)
         {
-            return await _orderRepository.GetOrderWithDetailsAsync(id);
+            var order = await _orderRepository.GetByIdAsync(id);
+            if (order == null)
+                return OperationResult<Order>.Fail($"No se encontró la orden con el ID {id}.");
+
+            return OperationResult<Order>.Ok(order, "Orden recuperada con éxito.");
         }
 
-        public async Task<IEnumerable<Order>> GetAllAsync()
+        public async Task<OperationResult<IEnumerable<Order>>> GetAllAsync()
         {
-            return await _orderRepository.GetAllAsync();
+            var orders = await _orderRepository.GetAllAsync();
+            return OperationResult<IEnumerable<Order>>.Ok(orders, "Listado de órdenes recuperado.");
         }
 
-        public async Task CreateAsync(Order entity)
+        public async Task<OperationResult<Order>> CreateOrderAsync(int userId)
         {
-            await _orderRepository.AddAsync(entity);
-        }
+            if (userId <= 0)
+                return OperationResult<Order>.Fail("El ID de usuario no es válido.");
 
-        public async Task UpdateAsync(Order entity)
-        {
-            await _orderRepository.Update(entity, entity.Id);
-        }
-
-        public async Task DeleteAsync(int id)
-        {
-            await _orderRepository.Disable(id);
-        }
-
-        public async Task<Order> CreateOrderAsync(int userId)
-        {
             var order = new Order
             {
                 UserId = userId,
                 OrderDate = DateTime.UtcNow,
-                Status = OrderStatus.Pending,
-                OrderItems = new List<OrderItem>()
+                Status = OrderStatus.Pending
             };
 
-            return await _orderRepository.AddAsync(order);
+            await _orderRepository.AddAsync(order);
+
+            return OperationResult<Order>.Ok(order, "Orden creada exitosamente.");
         }
 
-        public async Task ChangeOrderStatusAsync(int orderId, OrderStatus newStatus)
+        public async Task<OperationResult<Order>> ChangeOrderStatusAsync(int orderId, OrderStatus newStatus)
         {
             var order = await _orderRepository.GetByIdAsync(orderId);
             
-            if (order != null)
-            {
-                order.Status = newStatus;
-                await _orderRepository.Update(order, orderId);
-            }
+            if (order == null)
+                return OperationResult<Order>.Fail($"No se encontró la orden con el ID {orderId}.");
+
+            order.Status = newStatus;
+            await _orderRepository.Update(order, orderId);
+
+            return OperationResult<Order>.Ok(order, "Estado de la orden actualizado correctamente.");
+        }
+
+        public async Task<OperationResult<bool>> DeleteAsync(int id)
+        {
+            var order = await _orderRepository.Disable(id);
+            
+            if (order == null)
+                return OperationResult<bool>.Fail("No se puede cancelar la orden porque no existe.");
+
+            return OperationResult<bool>.Ok(true, "La orden fue cancelada exitosamente.");
         }
     }
 }

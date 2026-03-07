@@ -1,12 +1,14 @@
-
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using ECM.Application.Services.Ventas;
 using ECM.Data.Context;
 using ECM.Domain.Common.Enums;
+using ECM.Domain.Common;
 using ECM.Domain.Entities.Ventas;
 using ECM.Data.Repositories.Ventas;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
-
 namespace ECM.Test.Services.Ventas
 {
     public class OrderServiceTests : IDisposable
@@ -27,7 +29,7 @@ namespace ECM.Test.Services.Ventas
         }
 
         [Fact]
-        public async Task CreateOrderAsync_ShouldCreatePendingOrder()
+        public async Task CreateOrderAsync_ShouldReturnSuccess()
         {
             // Arrange
             int userId = 10;
@@ -36,42 +38,49 @@ namespace ECM.Test.Services.Ventas
             var result = await _service.CreateOrderAsync(userId);
 
             // Assert
-            Assert.NotNull(result);
-            Assert.Equal(userId, result.UserId);
-            Assert.Equal(OrderStatus.Pending, result.Status);
-            Assert.Empty(result.OrderItems);
+            Assert.True(result.Success); 
+            Assert.Equal("Orden creada exitosamente.", result.Message); 
+            Assert.NotNull(result.Data); 
+            Assert.Equal(userId, result.Data.UserId);
+            Assert.Equal(OrderStatus.Pending, result.Data.Status);
         }
 
         [Fact]
-        public async Task ChangeOrderStatusAsync_ShouldUpdateStatus_WhenOrderExists()
+        public async Task ChangeOrderStatusAsync_ShouldReturnSuccess()
         {
             // Arrange
-            var initialOrder = await _service.CreateOrderAsync(1);
+           
+            var creationResult = await _service.CreateOrderAsync(1);
+            int initialOrderId = creationResult.Data.Id;
             
             // Act
-            await _service.ChangeOrderStatusAsync(initialOrder.Id, OrderStatus.Shipped);
+            var result = await _service.ChangeOrderStatusAsync(initialOrderId, OrderStatus.Shipped);
 
             // Assert
-            var updatedOrder = await _context.Orders.FindAsync(initialOrder.Id);
+            Assert.True(result.Success);
+            Assert.Equal("Estado de la orden actualizado correctamente.", result.Message);
+            
+            var updatedOrder = await _context.Orders.FindAsync(initialOrderId);
             Assert.Equal(OrderStatus.Shipped, updatedOrder.Status);
         }
 
         [Fact]
-        public async Task ChangeOrderStatusAsync_ShouldNotThrowException_WhenOrderDoesNotExist()
+        public async Task ChangeOrderStatusAsync_ShouldReturnFail()
         {
             // Arrange
             int nonExistentOrderId = 999;
             
             // Act
-            var exception = await Record.ExceptionAsync(() => 
-                _service.ChangeOrderStatusAsync(nonExistentOrderId, OrderStatus.Cancelled));
+            var result = await _service.ChangeOrderStatusAsync(nonExistentOrderId, OrderStatus.Cancelled);
 
             // Assert
-            Assert.Null(exception);
+            Assert.False(result.Success); 
+            Assert.Equal($"No se encontró la orden con el ID {nonExistentOrderId}.", result.Message);
+            Assert.Null(result.Data); 
         }
 
         [Fact]
-        public async Task GetAllAsync_ShouldReturnAllOrders()
+        public async Task GetAllAsync_ShouldReturnSuccessWithAllOrders()
         {
             // Arrange
             await _service.CreateOrderAsync(1);
@@ -81,23 +90,58 @@ namespace ECM.Test.Services.Ventas
             var result = await _service.GetAllAsync();
 
             // Assert
-            Assert.Equal(2, result.Count());
+            Assert.True(result.Success);
+            Assert.Equal(2, result.Data.Count());
         }
 
         [Fact]
-        public async Task DeleteAsync_ShouldCancelOrder()
+        public async Task DeleteAsync_ShouldReturnSuccess()
         {
             // Arrange
-            var order = await _service.CreateOrderAsync(1);
+            var creationResult = await _service.CreateOrderAsync(1);
+            int orderId = creationResult.Data.Id;
 
             // Act
-            await _service.DeleteAsync(order.Id);
+            var result = await _service.DeleteAsync(orderId);
 
             // Assert
-            var deletedOrder = await _context.Orders.FindAsync(order.Id);
+            Assert.True(result.Success);
+            Assert.Equal("La orden fue cancelada exitosamente.", result.Message);
+
+ 
+            var deletedOrder = await _context.Orders.FindAsync(orderId);
             Assert.Equal(OrderStatus.Cancelled, deletedOrder.Status);
         }
 
+        [Fact]
+        public async Task GetByIdAsync_ShouldReturnFail()
+        {
+            // Arrange
+            int nonExistentId = 999;
+
+            // Act
+            var result = await _service.GetByIdAsync(nonExistentId);
+
+            // Assert
+            Assert.False(result.Success);
+            Assert.Equal($"No se encontró la orden con el ID {nonExistentId}.", result.Message);
+            Assert.Null(result.Data);
+        }
+
+        [Fact]
+        public async Task DeleteAsync_ShouldReturnFail()
+        {
+            // Arrange
+            int nonExistentId = 999;
+
+            // Act
+            var result = await _service.DeleteAsync(nonExistentId);
+
+            // Assert
+            Assert.False(result.Success);
+            Assert.Equal("No se puede cancelar la orden porque no existe.", result.Message);
+        }
+        
         public void Dispose()
         {
             _context.Database.EnsureDeleted();
