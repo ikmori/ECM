@@ -1,5 +1,6 @@
 using ECM.Application.Interfaces.Respository.Ventas;
 using ECM.Application.Interfaces.ServicesInterfaces.ShoppingCartServices;
+using ECM.Domain.Common;
 using ECM.Domain.Entities.Ventas;
 
 namespace ECM.Application.Services.Ventas;
@@ -17,22 +18,32 @@ public class CartItemService : ICartItemService
         _shoppingCartService = shoppingCartService;
     }
     
-   public async Task<CartItem> AddItemAsync(int? userId, string? guestId, int productId, int quantity)
+   public async Task<OperationResult<CartItem>> AddItemAsync(int? userId, string? guestId, int productId, int quantity)
     {
-        if (productId <= 0) throw new ArgumentException("ID de producto inválido.");
-        if (quantity <= 0) throw new ArgumentException("La cantidad a agregar debe ser mayor a cero.");
+        // validaciones
+        if (productId <= 0) 
+            return OperationResult<CartItem>.Fail("El ID de producto es invalido.");
+        if (quantity <= 0)
+            return OperationResult<CartItem>.Fail("La cantidad a agregar debe ser mayor a cero.");
 
         //  Garantizar que exista el  Carrito
-        var cart = await _shoppingCartService.GetOrCreateCartAsync(userId, guestId);
+        var cartResult = await _shoppingCartService.GetOrCreateCartAsync(userId, guestId);
+        
+        if (!cartResult.Success) 
+            return OperationResult<CartItem>.Fail(cartResult.Message!);
 
         //  Verificar si el producto ya esta adentro 
+        var cart = cartResult.Data!;
         var existingItem = await _cartItemRepository.GetItemInCartAsync(cart.Id, productId);
 
+       
         if (existingItem != null)
         {
             //  Si existe, acumulamos la cantidad
             existingItem.Quantity += quantity;
-            return await _cartItemRepository.UpdateAsync(existingItem);
+            var updatedItem = await _cartItemRepository.UpdateAsync(existingItem);
+           
+            return OperationResult<CartItem>.Ok(updatedItem, "Cantidad acumulada correctamente en el carrito.");
         }
         else
         {
@@ -43,47 +54,64 @@ public class CartItemService : ICartItemService
                 ProductId = productId, 
                 Quantity = quantity 
             };
-            return await _cartItemRepository.AddAsync(newItem);
+            
+            var addedItem = await _cartItemRepository.AddAsync(newItem);
+            
+            return OperationResult<CartItem>.Ok(addedItem, "Producto nuevo agregado al carrito.");
         }
     }
 
-    public async Task<CartItem> UpdateQuantityAsync(int? userId, string? guestId, int cartItemId, int newQuantity)
+    public async Task<OperationResult<CartItem>> UpdateQuantityAsync(int? userId, string? guestId, int cartItemId, int newQuantity)
     {
-        if (cartItemId <= 0)
-            throw new ArgumentException("El identificador del item es inválido.");
-
+        // Validar IDs y cantidades
+        if (cartItemId <= 0) 
+            return OperationResult<CartItem>.Fail("El identificador del Item debe ser mayor a cero.");
+        
         if (newQuantity <= 0) 
-            throw new ArgumentException("La cantidad debe ser mayor a cero.");
+            return OperationResult<CartItem>.Fail("La cantidad debe ser mayor a cero.");
 
-        var cart = await _shoppingCartService.GetOrCreateCartAsync(userId, guestId);
+        var cartResult = await _shoppingCartService.GetOrCreateCartAsync(userId, guestId);
+        if (!cartResult.Success) return OperationResult<CartItem>.Fail(cartResult.Message!);
 
-        var itemToUpdate = await _cartItemRepository.GetByIdAsync(cartItemId);
+        var cart = cartResult.Data!;
+        
+        var itemToUpdate = cart.Items.FirstOrDefault(i => i.Id == cartItemId);
 
-        if (itemToUpdate == null || itemToUpdate.ShoppingCartId != cart.Id)
-            throw new KeyNotFoundException("El artículo no existe o no pertenece a este carrito.");
+        // validar si existe
+        if (itemToUpdate == null)
+            return OperationResult<CartItem>.Fail("El articulo no existe o no pertenece a este carrito."); 
 
+        //  modificamos la cantidad
         itemToUpdate.Quantity = newQuantity;
 
-        return await _cartItemRepository.UpdateAsync(itemToUpdate);
+        
+        var updatedItem = await _cartItemRepository.UpdateAsync(itemToUpdate);
+        return OperationResult<CartItem>.Ok(updatedItem, "Cantidad actualizada con exito.");
     }
     
     
 
-    public async Task RemoveItemAsync(int? userId, string? guestId, int cartItemId)
+    public async Task<OperationResult> RemoveItemAsync(int? userId, string? guestId, int cartItemId)
     {
+        //  Validar identificador
         if (cartItemId <= 0)
-            throw new ArgumentException("El identificador del item es inválido.");
-        
-        //  Validar  para evitar que alguien borre ítems de otro usuario
-        var cart = await _shoppingCartService.GetOrCreateCartAsync(userId, guestId);
+            return OperationResult.Fail("El identificador del item debe ser mayor a cero.");
 
+        var cartResult = await _shoppingCartService.GetOrCreateCartAsync(userId, guestId);
+        if (!cartResult.Success) return OperationResult.Fail(cartResult.Message!);
+
+        var cart = cartResult.Data!;
         var itemToRemove = cart.Items.FirstOrDefault(i => i.Id == cartItemId);
 
-        //  Si existe y es suyo, lo borramos.
+        
         if (itemToRemove != null)
         {
             await _cartItemRepository.RemoveAsync(itemToRemove);
+            return OperationResult.Ok("Producto eliminado exitosamente del carrito.");
         }
+
+        
+        return OperationResult.Ok("La operacion finalizo correctamente (el producto no se encontraba en el carrito).");
     }
 
     
