@@ -1,5 +1,6 @@
 using ECM.Application.Interfaces.Respository.Identidades;
 using ECM.Application.Interfaces.ServicesInterfaces.IdentidadesServices;
+using ECM.Domain.Common;
 using ECM.Domain.Entities.Identidades;
 
 namespace ECM.Application.Services.Identidades;
@@ -13,76 +14,86 @@ public class AddressService : IAddressService
         _addressRepository = addressRepository;
     }
 
-    public async Task<Address?> GetByIdAsync(int id)
+    public async Task<OperationResult<Address>> GetByIdAsync(int id)
     {
         if (id <= 0)
         {
-            throw new ArgumentException("El ID de la dirección debe ser mayor a cero.", nameof(id));
+            return OperationResult<Address>.Fail("El id no puede ser menor a 0");
         }
 
-        return await _addressRepository.GetByIdAsync(id);
+        Address address = await _addressRepository.GetByIdAsync(id);
+
+        if (address == null)
+        {
+            return OperationResult<Address>.Fail("La direccion no fue encontrada en el repositorio");
+        }
+        
+        return OperationResult<Address>.Ok(address, $"La direccion con el id {id} fue retornada exitosamente");
     }
 
-    public async Task<IEnumerable<Address>> GetAllAsync()
+    public async Task<OperationResult<IEnumerable<Address>>> GetAllAsync()
     {
-        return await _addressRepository.GetAllAsync();
+        var addressList = await _addressRepository.GetAllAsync();
+
+        if (addressList == null || !addressList.Any())
+        {
+            return OperationResult<IEnumerable<Address>>.Ok(new List<Address>(), "La lista de direcciones está vacía.");
+        }
+        
+        return OperationResult<IEnumerable<Address>>.Ok(addressList);
     }
 
-    public async Task CreateAsync(Address entity)
-    {
-        ValidateAddressEntity(entity);
-
-        await _addressRepository.AddAsync(entity);
-    }
-
-    public async Task UpdateAsync(Address entity)
+    public async Task<OperationResult<Address>> CreateAsync(Address entity)
     {
         if (entity == null)
         {
-            throw new ArgumentNullException(nameof(entity), "La dirección no puede ser nula.");
+            return OperationResult<Address>.Fail("La entidad no puede ser nula");
+        }
+        
+        var createdAddress = await _addressRepository.AddAsync(entity);
+        return OperationResult<Address>.Ok(createdAddress, "direccion creada correctamente");
+    }
+
+    public async Task<OperationResult<Address>> UpdateAsync(Address entity)
+    {
+        if (entity == null)
+        {
+            return OperationResult<Address>.Fail("La direccion no puede ser nula");
         }
 
         if (entity.Id <= 0)
         {
-            throw new ArgumentException("El ID de la dirección a actualizar no es válido.", nameof(entity.Id));
+            return OperationResult<Address>.Fail("El Id no puede ser menor a 0");
+        }
+        
+        var addressToUpdate = await _addressRepository.GetByIdAsync(entity.Id);
+
+        if (addressToUpdate == null)
+        {
+            return OperationResult<Address>.Fail("La dirección que intentas actualizar no existe.");
         }
 
-        ValidateAddressEntity(entity);
-
-        await _addressRepository.Update(entity, entity.Id);
+        var updatedAddress = await _addressRepository.Update(entity, entity.Id);
+ 
+        return OperationResult<Address>.Ok(updatedAddress, "Dirección actualizada correctamente.");
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<OperationResult> DeleteAsync(int id)
     {
         if (id <= 0)
         {
-            throw new ArgumentException("El ID de la dirección debe ser mayor a cero.", nameof(id));
+            return OperationResult.Fail("El id no puede ser menor a 0");
+        }
+        
+        var address  = await _addressRepository.GetByIdAsync(id);
+
+        if (address == null)
+        {
+            return OperationResult.Fail("La direccion no pudo ser encontrada");
         }
 
         await _addressRepository.Disable(id);
-    }
 
-    // --- MÉTODOS AUXILIARES ---
-
-    /// <summary>
-    /// Centraliza las validaciones de negocio para una dirección.
-    /// </summary>
-    private void ValidateAddressEntity(Address entity)
-    {
-        if (entity == null)
-        {
-            throw new ArgumentNullException(nameof(entity), "La dirección no puede ser nula.");
-        }
-        
-        if (string.IsNullOrWhiteSpace(entity.Street))
-        {
-            throw new ArgumentException("La calle (Street) es obligatoria.", nameof(entity.Street));
-        }
-
-        if (string.IsNullOrWhiteSpace(entity.City))
-        {
-            throw new ArgumentException("La ciudad (City) es obligatoria.", nameof(entity.City));
-        }
-        
+        return OperationResult.Ok("La direccion fue borrada correctamente");
     }
 }
