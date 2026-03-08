@@ -44,6 +44,8 @@ public class ShoppingCartService : IShoppingCartService
         return OperationResult<ShoppingCart>.Ok(cart, "Carrito obtenido exitosamente.");
 
     }
+    
+    
 
     public async Task<OperationResult>ClearCartAsync(int? userId, string? guestId)
     {
