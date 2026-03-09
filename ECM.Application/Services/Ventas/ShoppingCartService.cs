@@ -1,6 +1,7 @@
 
 using ECM.Application.Interfaces.Respository.Ventas;
 using ECM.Application.Interfaces.ServicesInterfaces.ShoppingCartServices;
+using ECM.Domain.Common;
 using ECM.Domain.Entities.Ventas;
 
 namespace ECM.Application.Services.Ventas;
@@ -19,11 +20,11 @@ public class ShoppingCartService : IShoppingCartService
     }
 
 
-    public async Task<ShoppingCart> GetOrCreateCartAsync(int? userId, string? guestId)
+    public async Task<OperationResult<ShoppingCart>> GetOrCreateCartAsync(int? userId, string? guestId)
     {
-        
-        if (userId == null && string.IsNullOrWhiteSpace(guestId))
-            throw new ArgumentException("Se requiere un identificador de usuario o invitado válido.");
+        //validar el usuario
+        if ((userId == null || userId <= 0) && string.IsNullOrWhiteSpace(guestId))
+            return OperationResult<ShoppingCart>.Fail("Se requiere un identificador de usuario o invitado valido.");
 
         // buscar el carrito existente
         var cart = await _shoppingCartRepository.GetCartWithItemsAsync(userId, guestId);
@@ -40,22 +41,29 @@ public class ShoppingCartService : IShoppingCartService
             cart = await _shoppingCartRepository.AddAsync(cart);
         }
 
-        return cart;
-    }
+        return OperationResult<ShoppingCart>.Ok(cart, "Carrito obtenido exitosamente.");
 
-    public async Task ClearCartAsync(int? userId, string? guestId)
+    }
+    
+    
+
+    public async Task<OperationResult>ClearCartAsync(int? userId, string? guestId)
     {
         
-        if (userId == null && string.IsNullOrWhiteSpace(guestId))
-            throw new ArgumentException("Identificador inválido.");
+        // Validacion de usuario
+        if ((userId == null || userId <= 0) && string.IsNullOrWhiteSpace(guestId))
+            return OperationResult.Fail("Identificador de usuario o invitado invalido.");
         
         var cart = await _shoppingCartRepository.GetCartWithItemsAsync(userId, guestId);
 
        
-        if (cart != null && cart.Items.Any())
-        {
-            await _cartItemRepository.RemoveRangeAsync(cart.Items);
-        }
+       
+        if (cart == null || !cart.Items.Any())
+            return OperationResult.Ok("El carrito ya se encuentra vacio.");
+        
+        await _cartItemRepository.RemoveRangeAsync(cart.Items);
+            
+            return OperationResult.Ok("El carrito se vacio correctamente.");
     }
 }
     

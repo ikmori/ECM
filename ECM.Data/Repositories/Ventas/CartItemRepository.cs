@@ -19,7 +19,7 @@ public class CartItemRepository :  ICartItemRepository
    
     public async Task<CartItem?> GetByIdAsync(int id)
     {
-        if (id <= 0) throw new ArgumentException("El ID provisto no es válido.");
+        if (id <= 0) throw new ArgumentException("El ID provisto no es valido.");
         
         var result = await _context.Set<CartItem>().FindAsync(id);
         
@@ -47,7 +47,7 @@ public class CartItemRepository :  ICartItemRepository
     public async Task<CartItem> AddAsync(CartItem entity)
     {
         if (entity == null) throw new ArgumentNullException(nameof(entity));
-        if (entity.ProductId <= 0) throw new ArgumentException("El producto no es válido.");
+        if (entity.ProductId <= 0) throw new ArgumentException("El producto no es valido.");
         if (entity.Quantity <= 0) throw new ArgumentException("La cantidad debe ser mayor a cero.");
 
       
@@ -64,7 +64,7 @@ public class CartItemRepository :  ICartItemRepository
     public async Task<CartItem> UpdateAsync(CartItem entity)
     {
         if (entity == null) throw new ArgumentNullException(nameof(entity));
-        if (entity.Id <= 0) throw new ArgumentException("El registro debe tener un ID válido para actualizarse.");
+        if (entity.Id <= 0) throw new ArgumentException("El registro debe tener un ID valido para actualizarse.");
 
        
         _context.Set<CartItem>().Update(entity);
@@ -99,7 +99,8 @@ public class CartItemRepository :  ICartItemRepository
       
         var itemList = items.ToList(); 
         
-        if (!itemList.Any()) return; 
+        if (!itemList.Any()) 
+            return; 
 
         _context.Set<CartItem>().RemoveRange(itemList);
         await _context.SaveChangesAsync();

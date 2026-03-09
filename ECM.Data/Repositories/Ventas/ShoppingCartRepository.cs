@@ -17,7 +17,7 @@ public class ShoppingCartRepository : IShoppingCartRepository
     // Obtener carrito existente
     public async Task<ShoppingCart?> GetCartWithItemsAsync(int? userId, string? guestId)
     {
-        // Validación 
+        // Validacion 
         if (userId == null && string.IsNullOrWhiteSpace(guestId))
             throw new ArgumentException("Debe proveer un UserId o GuestId válido.");
 
@@ -36,7 +36,7 @@ public class ShoppingCartRepository : IShoppingCartRepository
     //  Crear nuevo carrito automáticamente
     public async Task<ShoppingCart> AddAsync(ShoppingCart cart)
     {
-        // Validación de nulidad
+        // Validacion de nulidad
         if (cart == null)
             throw new ArgumentNullException(nameof(cart), "El carrito no puede ser nulo.");
 
