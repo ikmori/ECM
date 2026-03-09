@@ -106,7 +106,47 @@ namespace ECM.Test.Repositories.Ventas
             var disabledOrder = await _context.Orders.FindAsync(order.Id);
             Assert.Equal(OrderStatus.Cancelled, disabledOrder.Status);
         }
+        
+        [Fact]
+        public async Task GetByIdAsync_ShouldReturnNull_WhenOrderDoesNotExist()
+        {
+            // Arrange
+            int nonExistentId = 999;
 
+            // Act
+            var result = await _repository.GetByIdAsync(nonExistentId);
+
+            // Assert
+            Assert.Null(result); 
+        }
+
+        [Fact]
+        public async Task Update_ShouldReturnNull_WhenOrderDoesNotExist()
+        {
+            // Arrange
+            int nonExistentId = 999;
+            var orderToUpdate = new Order { Id = nonExistentId, UserId = 1, Status = OrderStatus.Completed };
+
+            // Act
+            var result = await _repository.Update(orderToUpdate, nonExistentId);
+
+            // Assert
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async Task Disable_ShouldReturnNull_WhenOrderDoesNotExist()
+        {
+            // Arrange
+            int nonExistentId = 999;
+
+            // Act
+            var result = await _repository.Disable(nonExistentId);
+
+            // Assert
+            Assert.Null(result);
+        }
+        
         public void Dispose()
         {
             _context.Database.EnsureDeleted();

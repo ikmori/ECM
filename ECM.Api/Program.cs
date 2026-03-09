@@ -1,7 +1,15 @@
 using System;
 using System.Linq;
+using ECM.Application.Interfaces.Respository.Identidades;
+using ECM.Application.Interfaces.Respository.Ventas;
+using ECM.Application.Interfaces.ServicesInterfaces.IdentidadesServices;
+using ECM.Application.Interfaces.ServicesInterfaces.ShoppingCartServices;
+using ECM.Application.Services.Identidades;
+using ECM.Application.Services.Ventas;
 using ECM.Data;
 using ECM.Data.Context;
+using ECM.Data.Repositories.Identidades;
+using ECM.Data.Repositories.Ventas;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +27,19 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // El nombre "EcommerceDb" identifica la base de datosvar app = builder.Build();
 
 //
+
+//dependecias repositoy y service de shoppingCart y CartItem
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
+builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
+builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
+builder.Services.AddScoped<ICartItemService, CartItemService>();
+
+//dependencias repository y service de Addresses y Users
+builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAddressService, IAddressService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 var app = builder.Build();
 
 //
