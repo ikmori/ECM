@@ -8,8 +8,14 @@ namespace ECM.Application.Interfaces.Respository.Catalogo;
 public interface ICategoryRepository
 {
     
-    public interface ICategoryRepository : IBaseRepository<Category>
-    {
-        Task<IEnumerable<Category>> GetWithProductsAsync();
-    }
+ 
+    
+        Task<Category?> GetByIdAsync(int id);
+        Task<IEnumerable<Category>> GetAllAsync();
+        Task<Category?> AddAsync(Category entity);
+        Task<Category?> Update(Category entity, int id);
+        Task<Category?> Disable(int id);
+        Task<IEnumerable<Category>> GetSubCategoriesAsync(int parentId);
+
+       
 }

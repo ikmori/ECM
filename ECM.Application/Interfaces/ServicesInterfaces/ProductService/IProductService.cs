@@ -1,15 +1,15 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using ECM.Application.Interfaces.ServicesInterfaces.Servicio_Base;
+
+using ECM.Domain.Common;
 using ECM.Domain.Entities.Catalogo;
 
 namespace ECM.Application.Interfaces.ServicesInterfaces.ProductService;
 
 public interface IProductService
 {
-    public interface IProductService : IBaseService<Product>
-    {
-        Task<IEnumerable<Product>> GetProductsByCategoryAsync(int categoryId);
-        Task<bool> DecreaseStockAsync(int productId, int quantity);
-    }
+    Task<OperationResult<IEnumerable<Product>>> GetAllAsync();
+    Task<OperationResult<Product>> GetByIdAsync(int id);
+    Task<OperationResult<Product>> CreateAsync(Product product);
+    Task<OperationResult<Product>> UpdateAsync(Product product);
+    Task<OperationResult<bool>> DeleteAsync(int id);
+    Task<OperationResult<bool>> UpdateStockAsync(int productId, int quantity);
 }
