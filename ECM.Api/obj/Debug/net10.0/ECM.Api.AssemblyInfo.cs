@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ECM.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c0c189d3712e034d28e34f26883d0a5a8a97624")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23e3520d883491fc9f286260e1657d7a6eea74e3")]
 [assembly: System.Reflection.AssemblyProductAttribute("ECM.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ECM.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

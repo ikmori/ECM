@@ -21,7 +21,7 @@ public class AddressService : IAddressService
             return OperationResult<Address>.Fail("El id no puede ser menor a 0");
         }
 
-        Address address = await _addressRepository.GetByIdAsync(id);
+        Address? address = await _addressRepository.GetByIdAsync(id);
 
         if (address == null)
         {
@@ -35,7 +35,7 @@ public class AddressService : IAddressService
     {
         var addressList = await _addressRepository.GetAllAsync();
 
-        if (addressList == null || !addressList.Any())
+        if (addressList == null)
         {
             return OperationResult<IEnumerable<Address>>.Ok(new List<Address>(), "La lista de direcciones está vacía.");
         }
@@ -51,6 +51,12 @@ public class AddressService : IAddressService
         }
         
         var createdAddress = await _addressRepository.AddAsync(entity);
+        
+        if (createdAddress == null)
+        {
+            return OperationResult<Address>.Fail("Error al crear la dirección");
+        }
+        
         return OperationResult<Address>.Ok(createdAddress, "direccion creada correctamente");
     }
 
@@ -74,6 +80,11 @@ public class AddressService : IAddressService
         }
 
         var updatedAddress = await _addressRepository.Update(entity, entity.Id);
+        
+        if (updatedAddress == null)
+        {
+            return OperationResult<Address>.Fail("Error al actualizar la dirección");
+        }
  
         return OperationResult<Address>.Ok(updatedAddress, "Dirección actualizada correctamente.");
     }
@@ -85,7 +96,7 @@ public class AddressService : IAddressService
             return OperationResult.Fail("El id no puede ser menor a 0");
         }
         
-        var address  = await _addressRepository.GetByIdAsync(id);
+        var address = await _addressRepository.GetByIdAsync(id);
 
         if (address == null)
         {
