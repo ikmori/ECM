@@ -5,12 +5,15 @@ using ECM.Domain.Entities.Catalogo;
 
 namespace ECM.Application.Interfaces.Respository.Catalogo;
 
-public interface IProductRepository
-{
-    public interface IProductRepository : IBaseRepository<Product>
+
+    public interface IProductRepository
     {
-        Task<IEnumerable<Product>> GetByCategoryAsync(int categoryId);
-        Task<IEnumerable<Product>> GetActiveProductsAsync();
-        Task UpdateStockAsync(int productId, int quantity);
+        Task<Product?> GetByIdAsync(int id);
+        Task<IEnumerable<Product>> GetAllAsync();
+        Task<Product?> AddAsync(Product entity);
+        Task<Product> Update(Product entity, int id);
+        Task<Product?> Disable(int id);
+        Task<Product?> GetBySkuAsync(string sku);
+        Task<IEnumerable<Product>> GetByCategoryIdAsync(int categoryId);
+        
     }
-}
