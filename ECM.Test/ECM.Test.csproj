@@ -25,4 +25,8 @@
       <ProjectReference Include="..\ECM.Domain\ECM.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Services\Logistica\" />
+    </ItemGroup>
+
 </Project>
