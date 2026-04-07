@@ -1,0 +1,72 @@
+@model ECM.Domain.Entities.Identidades.User
+
+@{
+    ViewData["Title"] = "Editar Usuario";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm mt-4">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0"><i class="bi bi-pencil-square"></i> Editar Perfil de Usuario</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit" method="post">
+                    
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="FirstName" class="form-label fw-bold">Nombre</label>
+                            <input asp-for="FirstName" class="form-control" required />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="LastName" class="form-label fw-bold">Apellido</label>
+                            <input asp-for="LastName" class="form-control" required />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label fw-bold">Correo Electrónico</label>
+                        <input asp-for="Email" type="email" class="form-control" required />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label asp-for="PasswordHash" class="form-label fw-bold">Contraseña</label>
+                            <input asp-for="PasswordHash" type="password" class="form-control" required />
+                            <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                            <small class="text-muted">Ingresa la contraseña actual o una nueva.</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Role" class="form-label fw-bold">Rol en el Sistema</label>
+                            <select asp-for="Role" class="form-select">
+                                <option value="Customer">Cliente</option>
+                                <option value="Administrator">Administrador</option>
+                            </select>
+                            <span asp-validation-for="Role" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 form-check form-switch">
+                        <input class="form-check-input" type="checkbox" asp-for="IsActive" role="switch">
+                        <label class="form-check-label fw-bold" asp-for="IsActive">Usuario Activo</label>
+                        <div class="form-text">Si apagas este interruptor, el usuario no podrá acceder al sistema.</div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a asp-action="Index" class="btn btn-secondary me-md-2">Cancelar</a>
+                        <button type="submit" class="btn btn-warning text-dark fw-bold">Actualizar Usuario</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

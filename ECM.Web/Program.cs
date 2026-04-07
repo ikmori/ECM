@@ -1,7 +1,12 @@
+using ECM.Application.Interfaces.Respository.Identidades;
 using ECM.Application.Interfaces.Respository.Ventas;
+using ECM.Application.Interfaces.ServicesInterfaces.IdentidadesServices;
 using ECM.Application.Interfaces.ServicesInterfaces.OrderService;
+using ECM.Application.Interfaces.ServicesInterfaces.ShoppingCartServices;
+using ECM.Application.Services.Identidades;
 using ECM.Application.Services.Ventas;
 using ECM.Data.Context;
+using ECM.Data.Repositories.Identidades;
 using ECM.Data.Repositories.Ventas;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -11,16 +16,33 @@ using Microsoft.Extensions.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-//
 builder.Services.AddControllersWithViews();
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseInMemoryDatabase("ECM_TestDb"));
-// Registro de Repositorios
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+    options.UseInMemoryDatabase(connectionString ?? "ECM_DefaultDb"));
 
-// Registro de Servicios
+// --- REGISTRO DE REPOSITORIOS ---
+// Repositorios de Ventas 
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
+builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
+
+// Repositorios de Identidades
+builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+
+// --- REGISTRO DE SERVICIOS ---
+// Servicios de Ventas
 builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IShoppingCartService, ShoppingCartService>();
+builder.Services.AddScoped<ICartItemService, CartItemService>();
+
+// Servicios de Identidades
+builder.Services.AddScoped<IAddressService, AddressService>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 
 var app = builder.Build();
 
@@ -28,9 +50,9 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
 app.UseHttpsRedirection();
 app.UseRouting();
 
@@ -42,7 +64,5 @@ app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
-//prueba
 
 app.Run();

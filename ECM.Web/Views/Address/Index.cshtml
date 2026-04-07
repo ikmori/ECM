@@ -1,0 +1,72 @@
+@model IEnumerable<ECM.Domain.Entities.Identidades.Address>
+
+@{
+    ViewData["Title"] = "Gestión de Direcciones";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Direcciones de Envío y Facturación</h2>
+    <a asp-action="Create" class="btn btn-primary">
+        <i class="bi bi-plus-circle"></i> Nueva Dirección
+    </a>
+</div>
+
+@if (ViewBag.InfoMessage != null)
+{
+    <div class="alert alert-info shadow-sm">
+        <i class="bi bi-info-circle-fill me-2"></i> @ViewBag.InfoMessage
+    </div>
+}
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID Usuario</th>
+                        <th>Calle / Avenida</th>
+                        <th>Ciudad</th>
+                        <th>Estado / Provincia</th>
+                        <th>Código Postal</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var address in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <span class="badge bg-secondary">Usuario #@address.UserId</span>
+                                </td>
+                                <td class="fw-bold">@address.Street</td>
+                                <td>@address.City</td>
+                                <td>@address.State</td>
+                                <td>@address.ZipCode</td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@address.Id" class="btn btn-sm btn-warning">
+                                        <i class="bi bi-pencil"></i> Editar
+                                    </a>
+                                    
+                                    <form asp-action="Delete" asp-route-id="@address.Id" method="post" class="d-inline" onsubmit="return confirm('¿Estás seguro de eliminar esta dirección del sistema?');">
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="bi bi-trash"></i> Eliminar
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center text-muted py-4">No hay direcciones registradas actualmente.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
