@@ -13,5 +13,8 @@ namespace ECM.Application.Interfaces.ServicesInterfaces.OrderService
         Task<OperationResult<Order>> CreateOrderAsync(int userId);
         Task<OperationResult<Order>> ChangeOrderStatusAsync(int orderId, OrderStatus newStatus);
         Task<OperationResult<bool>> DeleteAsync(int id);
+        
+        //esto es temporal para probar el modulo de order item en la vista web
+        Task<OperationResult<Order>> AddOrderItemAsync(int orderId, int productId, string productName, int quantity, decimal unitPrice);
     }
 }

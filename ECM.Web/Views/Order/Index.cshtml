@@ -1,0 +1,52 @@
+@model IEnumerable<ECM.Web.Models.Ventas.OrderViewModel>
+
+@{
+    ViewData["Title"] = "Órdenes";
+}
+
+<h1>Listado de Órdenes</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nueva Orden</a>
+</p>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Fecha</th>
+        <th>Total</th>
+        <th>Estado</th>
+        <th>ID Usuario</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.OrderDate.ToLocalTime().ToString("g")</td>
+            <td>@item.TotalAmount.ToString("C")</td>
+            <td>
+                <span class="badge bg-info text-dark">@item.Status</span>
+            </td>
+            <td>@item.UserId</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detalles</a> |
+                <a asp-action="EditStatus" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Cambiar Estado</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Cancelar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
