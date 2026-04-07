@@ -1,0 +1,67 @@
+@model ECM.Domain.Entities.Identidades.Address
+
+@{
+    ViewData["Title"] = "Agregar Nueva Dirección";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm mt-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="bi bi-geo-alt-fill"></i> Registrar Dirección de Envío</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post">
+                    
+                    <div class="alert alert-warning mb-4">
+                        <i class="bi bi-exclamation-triangle-fill"></i> 
+                        <strong>Nota de Desarrollo:</strong> Como aún no hay sesión iniciada, ingresa el <b>ID del Usuario</b> al que pertenece esta dirección (ej. 1).
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label asp-for="UserId" class="form-label fw-bold">ID del Usuario (Propietario)</label>
+                        <input asp-for="UserId" type="number" class="form-control" placeholder="Ej. 1" required />
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="mb-3">
+                        <label asp-for="Street" class="form-label fw-bold">Calle / Avenida y Número</label>
+                        <input asp-for="Street" class="form-control" placeholder="Ej. Av. Winston Churchill #123" required />
+                        <span asp-validation-for="Street" class="text-danger"></span>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label asp-for="City" class="form-label fw-bold">Ciudad</label>
+                            <input asp-for="City" class="form-control" placeholder="Ej. Santo Domingo" required />
+                            <span asp-validation-for="City" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-5">
+                            <label asp-for="State" class="form-label fw-bold">Estado / Provincia</label>
+                            <input asp-for="State" class="form-control" placeholder="Ej. Distrito Nacional" required />
+                            <span asp-validation-for="State" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-3">
+                            <label asp-for="ZipCode" class="form-label fw-bold">Código Postal</label>
+                            <input asp-for="ZipCode" class="form-control" placeholder="Ej. 10148" required />
+                            <span asp-validation-for="ZipCode" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a asp-action="Index" class="btn btn-outline-secondary me-md-2">Cancelar</a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-save"></i> Guardar Dirección
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

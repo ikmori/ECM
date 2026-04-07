@@ -1,0 +1,50 @@
+@model ECM.Domain.Entities.Identidades.User
+
+@{
+    ViewData["Title"] = "Detalles del Usuario";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card shadow-sm mt-4">
+            <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
+                <h4 class="mb-0"><i class="bi bi-person-lines-fill"></i> Información del Perfil</h4>
+                @if (Model.IsActive)
+                {
+                    <span class="badge bg-success fs-6">Activo</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger fs-6">Inactivo</span>
+                }
+            </div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4 text-muted">ID de Sistema</dt>
+                    <dd class="col-sm-8 fw-bold">@Model.Id</dd>
+
+                    <dt class="col-sm-4 text-muted">Nombre Completo</dt>
+                    <dd class="col-sm-8">@Model.FirstName @Model.LastName</dd>
+
+                    <dt class="col-sm-4 text-muted">Correo Electrónico</dt>
+                    <dd class="col-sm-8">
+                        <a href="mailto:@Model.Email">@Model.Email</a>
+                    </dd>
+
+                    <dt class="col-sm-4 text-muted">Rol Asignado</dt>
+                    <dd class="col-sm-8">
+                        <span class="badge bg-secondary">@Model.Role</span>
+                    </dd>
+                </dl>
+            </div>
+            <div class="card-footer bg-light d-flex justify-content-end gap-2">
+                <a asp-action="Index" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Volver a la Lista
+                </a>
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                    <i class="bi bi-pencil"></i> Editar Perfil
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
