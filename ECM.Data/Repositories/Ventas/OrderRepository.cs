@@ -17,7 +17,9 @@ namespace ECM.Data.Repositories.Ventas
 
         public async Task<Order> GetByIdAsync(int id)
         {
-            return await _context.Orders.FindAsync(id);
+            return await _context.Orders
+                .Include(o => o.OrderItems) 
+                .FirstOrDefaultAsync(o => o.Id == id);
         }
 
         public async Task<IEnumerable<Order>> GetAllAsync()
