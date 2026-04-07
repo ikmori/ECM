@@ -6,19 +6,4 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="Controllers\Catalogo\" />
-      <Folder Include="Controllers\Identidades\" />
-      <Folder Include="Controllers\Logistica\" />
-      <Folder Include="Controllers\Ventas\" />
-      <Folder Include="Models\Catalogo\" />
-      <Folder Include="Models\Identidades\" />
-      <Folder Include="Models\Logistica\" />
-      <Folder Include="Models\Ventas\" />
-      <Folder Include="Views\Catalogo\" />
-      <Folder Include="Views\Identidades\" />
-      <Folder Include="Views\Logistica\" />
-      <Folder Include="Views\Ventas\" />
-    </ItemGroup>
-
 </Project>
