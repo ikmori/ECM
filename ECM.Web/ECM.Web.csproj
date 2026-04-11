@@ -17,4 +17,32 @@
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="10.0.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Catalogo\category\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Catalogo\category\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Catalogo\category\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Catalogo\category\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Catalogo\category\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\category\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\category\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\category\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\category\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\category\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Views\Catalogo\category\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Catalogo\category\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\category\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\category\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Catalogo\category\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Catalogo\category\Delete.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Views\category\Details.cshtml" />
+      <AdditionalFiles Include="Views\category\Index.cshtml" />
+      <AdditionalFiles Include="Views\product\Create.cshtml" />
+    </ItemGroup>
+
 </Project>
