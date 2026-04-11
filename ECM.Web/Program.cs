@@ -1,11 +1,16 @@
+using ECM.Application.Interfaces.Respository.Catalogo;
 using ECM.Application.Interfaces.Respository.Identidades;
 using ECM.Application.Interfaces.Respository.Ventas;
 using ECM.Application.Interfaces.ServicesInterfaces.IdentidadesServices;
 using ECM.Application.Interfaces.ServicesInterfaces.OrderService;
+using ECM.Application.Interfaces.ServicesInterfaces.ProductService;
 using ECM.Application.Interfaces.ServicesInterfaces.ShoppingCartServices;
+using ECM.Application.Services.Catalogo;
 using ECM.Application.Services.Identidades;
 using ECM.Application.Services.Ventas;
+using ECM.Application.ServicesInterfaces.CategoryService;
 using ECM.Data.Context;
+using ECM.Data.Repositories.Catalogo;
 using ECM.Data.Repositories.Identidades;
 using ECM.Data.Repositories.Ventas;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +37,9 @@ builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
 builder.Services.AddScoped<IAddressRepository, AddressRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+// Repositorios de catalogo
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 // --- REGISTRO DE SERVICIOS ---
 // Servicios de Ventas
@@ -42,6 +50,10 @@ builder.Services.AddScoped<ICartItemService, CartItemService>();
 // Servicios de Identidades
 builder.Services.AddScoped<IAddressService, AddressService>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+// Servicios de catalogo
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 
 var app = builder.Build();
