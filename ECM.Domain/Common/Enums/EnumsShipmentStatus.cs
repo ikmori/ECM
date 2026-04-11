@@ -1,3 +1,3 @@
 namespace ECM.Domain.Common.Enums;
 
-public enum ShipmentStatus { Preparing, InTransit, OutForDelivery, Delivered, Failed }
+public enum ShipmentStatus { Preparing, InTransit, OutForDelivery, Delivered, Failed, Cancelled , Shipped }

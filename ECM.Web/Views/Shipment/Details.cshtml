@@ -1,0 +1,116 @@
+@using ECM.Domain.Common.Enums
+@model ECM.Web.Models.Logistica.ShipmentViewModel
+
+@{
+    ViewData["Title"] = $"Envío - {Model.TrackingNumber}";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-truck"></i> Detalles del Envío
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <!-- Timeline de estado -->
+                    <div class="mb-4">
+                        <h6 class="text-muted mb-3">Estado del Envío</h6>
+                        <div class="progress" style="height: 30px;">
+                            <div class="progress-bar bg-success" 
+                                 role="progressbar" 
+                                 style="width: @(Model.Status == ShipmentStatus.Delivered ? "100%" : 
+                                               Model.Status == ShipmentStatus.InTransit ? "75%" :
+                                               Model.Status == ShipmentStatus.Shipped ? "50%" :
+                                               Model.Status == ShipmentStatus.Preparing ? "25%" : "0%")">
+                                @Model.Status
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-5">Número de Tracking:</dt>
+                                <dd class="col-sm-7">
+                                    <span class="badge bg-primary">@Model.TrackingNumber</span>
+                                </dd>
+
+                                <dt class="col-sm-5">Orden #:</dt>
+                                <dd class="col-sm-7">
+                                    <a asp-controller="Order" asp-action="Details" asp-route-id="@Model.OrderId">
+                                        #@Model.OrderId
+                                    </a>
+                                </dd>
+
+                                <dt class="col-sm-5">Transportista:</dt>
+                                <dd class="col-sm-7">@Model.CarrierName</dd>
+
+                                <dt class="col-sm-5">Estado:</dt>
+                                <dd class="col-sm-7">
+                                    <span class="badge bg-@Model.StatusBadgeClass">
+                                        <i class="bi @Model.StatusIcon"></i> @Model.Status
+                                    </span>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-6">
+                            <dl class="row">
+                                <dt class="col-sm-5">Fecha de Creación:</dt>
+                                <dd class="col-sm-7">@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</dd>
+
+                                <dt class="col-sm-5">Fecha Estimada:</dt>
+                                <dd class="col-sm-7">
+                                    @(Model.EstimatedDeliveryDate?.ToString("dd/MM/yyyy") ?? "No especificada")
+                                </dd>
+
+                                <dt class="col-sm-5">Fecha de Entrega:</dt>
+                                <dd class="col-sm-7">
+                                    @if (Model.ActualDeliveryDate.HasValue)
+                                    {
+                                        <span class="text-success fw-bold">@Model.ActualDeliveryDate.Value.ToString("dd/MM/yyyy")</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">Pendiente</span>
+                                    }
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Volver
+                        </a>
+                        <div>
+                            @if (!Model.IsDelivered && !Model.IsCancelled)
+                            {
+                                <a asp-action="EditStatus" asp-route-id="@Model.Id" class="btn btn-warning">
+                                    <i class="bi bi-truck"></i> Actualizar Estado
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enlace de tracking público -->
+            <div class="card mt-3 bg-light">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <i class="bi bi-link"></i> Tracking Público
+                    </h6>
+                    <p class="small text-muted">
+                        Comparte este enlace con el cliente para que pueda rastrear su envío:
+                    </p>
+                    <code>@($"{Context.Request.Scheme}://{Context.Request.Host}/Shipment/Track?trackingNumber={Model.TrackingNumber}")</code>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

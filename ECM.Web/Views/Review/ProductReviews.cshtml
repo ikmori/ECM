@@ -1,0 +1,92 @@
+@model ECM.Web.Models.Logistica.ProductReviewsViewModel
+
+@{
+    ViewData["Title"] = $"Reseñas - {Model.ProductName}";
+}
+
+<div class="container mt-4">
+    <div class="mb-4">
+        <a asp-controller="Product" asp-action="Details" asp-route-id="@Model.ProductId" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Volver al Producto
+        </a>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">@Model.ProductName</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <div class="display-1 fw-bold text-warning">@Model.AverageRating.ToString("0.0")</div>
+                    <div class="mb-2">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            if (i <= Math.Round(Model.AverageRating))
+                            {
+                                <i class="bi bi-star-fill text-warning fs-4"></i>
+                            }
+                            else if (i - 0.5 <= Model.AverageRating)
+                            {
+                                <i class="bi bi-star-half text-warning fs-4"></i>
+                            }
+                            else
+                            {
+                                <i class="bi bi-star text-muted fs-4"></i>
+                            }
+                        }
+                    </div>
+                    <div class="text-muted">Basado en @Model.TotalReviews reseñas</div>
+                </div>
+                <div class="col-md-8">
+                    @foreach (var rating in Model.RatingDistribution.OrderByDescending(x => x.Key))
+                    {
+                        var percentage = Model.TotalReviews > 0 ? (rating.Value * 100) / Model.TotalReviews : 0;
+                        <div class="mb-2">
+                            <div class="row align-items-center">
+                                <div class="col-2">
+                                    @rating.Key estrellas <i class="bi bi-star-fill text-warning"></i>
+                                </div>
+                                <div class="col-8">
+                                    <div class="progress" style="height: 8px;">
+                                        <div class="progress-bar bg-warning" style="width: @percentage%"></div>
+                                    </div>
+                                </div>
+                                <div class="col-2 text-muted">@rating.Value</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h5 class="mb-3">Todas las reseñas</h5>
+    
+    @foreach (var review in Model.Reviews)
+    {
+        <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <div class="mb-1">
+                            @Html.Raw(review.StarRatingHtml)
+                            <span class="ms-2 fw-bold">@review.UserName</span>
+                        </div>
+                        <div class="text-muted small">@review.CreatedAt.ToString("dd/MM/yyyy HH:mm")</div>
+                    </div>
+                    <div>
+                        <a asp-action="Details" asp-route-id="@review.Id" class="btn btn-sm btn-outline-info">
+                            <i class="bi bi-eye"></i> Ver
+                        </a>
+                    </div>
+                </div>
+                @if (!string.IsNullOrEmpty(review.Comment))
+                {
+                    <hr />
+                    <p class="mb-0">@review.Comment</p>
+                }
+            </div>
+        </div>
+    }
+</div>

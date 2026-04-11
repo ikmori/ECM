@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ECM.Web.Controllers.Catalogo;
-
 public class ProductController : Controller
 {
     private readonly IProductService _productService;
@@ -17,17 +16,17 @@ public class ProductController : Controller
         _categoryService = categoryService;
     }
 
-    // Método auxiliar para cargar el combo de categorías
     private async Task LoadCategoriesViewBagAsync()
     {
         var categoryResult = await _categoryService.GetAllAsync();
-        if (categoryResult.Success && categoryResult.Data != null)
-        {
-            ViewBag.Categories = new SelectList(categoryResult.Data, "Id", "Name");
-        }
+        // Si el resultado es exitoso, cargamos el SelectList. Si no, enviamos una lista vacía.
+        var categories = categoryResult.Success && categoryResult.Data != null 
+                         ? categoryResult.Data 
+                         : new List<Category>();
+        
+        ViewBag.Categories = new SelectList(categories, "Id", "Name");
     }
 
-    // GET: Product/Index
     public async Task<IActionResult> Index()
     {
         var result = await _productService.GetAllAsync();
@@ -37,10 +36,9 @@ public class ProductController : Controller
             ViewBag.InfoMessage = result.Message;
         }
 
-        return View(result.Data);
+        return View(result.Data ?? new List<Product>());
     }
 
-    // GET: Product/Details/5
     public async Task<IActionResult> Details(int id)
     {
         var result = await _productService.GetByIdAsync(id);
@@ -54,20 +52,24 @@ public class ProductController : Controller
         return View(result.Data);
     }
 
-    // GET: Product/Create
     public async Task<IActionResult> Create()
     {
         await LoadCategoriesViewBagAsync();
         return View();
     }
 
-    // POST: Product/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(Product product)
     {
+        // IMPORTANTE: Removemos las propiedades de navegación de la validación
+        // Esto evita que el ModelState sea falso por culpa de objetos que no vienen en el form
+        ModelState.Remove(nameof(product.Category));
+        ModelState.Remove(nameof(product.Images));
+
         if (!ModelState.IsValid)
         {
+            // Si llegas aquí, es que falta un campo requerido en el HTML (Nombre, Precio, etc.)
             await LoadCategoriesViewBagAsync();
             return View(product);
         }
@@ -85,7 +87,6 @@ public class ProductController : Controller
         return View(product);
     }
 
-    // GET: Product/Edit/5
     public async Task<IActionResult> Edit(int id)
     {
         var result = await _productService.GetByIdAsync(id);
@@ -100,7 +101,6 @@ public class ProductController : Controller
         return View(result.Data);
     }
 
-    // POST: Product/Edit/5
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, Product product)
@@ -110,6 +110,10 @@ public class ProductController : Controller
             TempData["Error"] = "El ID del producto no coincide.";
             return RedirectToAction(nameof(Index));
         }
+
+        // Al igual que en Create, limpiamos las validaciones de objetos complejos
+        ModelState.Remove(nameof(product.Category));
+        ModelState.Remove(nameof(product.Images));
 
         if (!ModelState.IsValid)
         {
@@ -130,7 +134,6 @@ public class ProductController : Controller
         return View(product);
     }
 
-    // GET: Product/Delete/5
     public async Task<IActionResult> Delete(int id)
     {
         var result = await _productService.GetByIdAsync(id);
@@ -144,7 +147,6 @@ public class ProductController : Controller
         return View(result.Data);
     }
 
-    // POST: Product/Delete/5
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
@@ -163,8 +165,6 @@ public class ProductController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    // POST: Product/UpdateStock
-    // Este endpoint extra te permite actualizar solo el stock desde la tabla de inventario
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateStock(int id, int quantity)
@@ -177,15 +177,5 @@ public class ProductController : Controller
             TempData["Error"] = result.Message;
 
         return RedirectToAction(nameof(Index));
-    }
-    
-    [HttpPost]
-    public async Task<IActionResult> AddToCart(int productId, int quantity)
-    {
-        // 1. Llamar a tu lógica de carrito (Sesión, Base de datos o Cookie)
-        // 2. Validar stock con el IProductService
-    
-        TempData["Success"] = "Producto añadido al carrito correctamente.";
-        return RedirectToAction("Index", "Product");
     }
 }

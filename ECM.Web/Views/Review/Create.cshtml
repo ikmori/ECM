@@ -1,0 +1,108 @@
+@model ECM.Web.Models.Logistica.CreateReviewViewModel
+
+@{
+    ViewData["Title"] = "Crear Reseña";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-star"></i> Escribir una Reseña
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="ProductId" class="form-label fw-bold"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-box"></i></span>
+                                <input asp-for="ProductId" class="form-control" type="number" />
+                            </div>
+                            <span asp-validation-for="ProductId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="UserId" class="form-label fw-bold"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                <input asp-for="UserId" class="form-control" type="number" />
+                            </div>
+                            <span asp-validation-for="UserId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Rating" class="form-label fw-bold"></label>
+                            <div class="rating-input">
+                                <div class="btn-group" role="group">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <button type="button" class="btn btn-outline-warning rating-star" data-rating="@i">
+                                            <i class="bi bi-star fs-3"></i>
+                                        </button>
+                                    }
+                                </div>
+                                <input type="hidden" asp-for="Rating" id="selectedRating" />
+                            </div>
+                            <span asp-validation-for="Rating" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Comment" class="form-label fw-bold"></label>
+                            <textarea asp-for="Comment" class="form-control" rows="5" 
+                                      placeholder="Escribe tu experiencia con este producto..."></textarea>
+                            <span asp-validation-for="Comment" class="text-danger"></span>
+                            <small class="form-text text-muted">Máximo 1000 caracteres.</small>
+                        </div>
+
+                        <hr />
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Publicar Reseña
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        // Sistema de calificación por estrellas
+        const stars = document.querySelectorAll('.rating-star');
+        const ratingInput = document.getElementById('selectedRating');
+
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = parseInt(this.getAttribute('data-rating'));
+                ratingInput.value = rating;
+                
+                // Actualizar estrellas visualmente
+                stars.forEach((s, index) => {
+                    const icon = s.querySelector('i');
+                    if (index < rating) {
+                        icon.classList.remove('bi-star');
+                        icon.classList.add('bi-star-fill');
+                        s.classList.add('active');
+                    } else {
+                        icon.classList.remove('bi-star-fill');
+                        icon.classList.add('bi-star');
+                        s.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,72 @@
+@using ECM.Domain.Common.Enums
+@model ECM.Web.Models.Logistica.EditShipmentStatusViewModel
+
+@{
+    ViewData["Title"] = $"Cambiar Estado - {Model.TrackingNumber}";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning">
+                    <h4 class="mb-0">
+                        <i class="bi bi-truck"></i> Actualizar Estado de Envío
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle"></i>
+                        <strong>Tracking:</strong> @Model.TrackingNumber<br />
+                        <strong>Estado Actual:</strong> 
+                        <span class="badge bg-secondary">@Model.CurrentStatus</span>
+                    </div>
+
+                    <form asp-action="EditStatus" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="TrackingNumber" />
+                        <input type="hidden" asp-for="CurrentStatus" />
+
+                        <div class="mb-3">
+                            <label asp-for="NewStatus" class="form-label fw-bold"></label>
+                            <select asp-for="NewStatus" class="form-select" asp-items="Html.GetEnumSelectList<ShipmentStatus>()">
+                                <option value="">Seleccione nuevo estado...</option>
+                            </select>
+                            <span asp-validation-for="NewStatus" class="text-danger"></span>
+                        </div>
+
+                        <hr />
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-circle"></i> Actualizar Estado
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mt-3 bg-light">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <i class="bi bi-info-circle"></i> Estados disponibles:
+                    </h6>
+                    <ul class="small text-muted mb-0">
+                        <li><strong>Preparing</strong> - Preparando envío</li>
+                        <li><strong>Shipped</strong> - Envío despachado</li>
+                        <li><strong>InTransit</strong> - En tránsito</li>
+                        <li><strong>Delivered</strong> - Entregado</li>
+                        <li><strong>Cancelled</strong> - Cancelado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

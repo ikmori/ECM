@@ -1,0 +1,77 @@
+@using ECM.Domain.Common.Enums
+@model ECM.Web.Models.Logistica.CouponViewModel
+
+@{
+    ViewData["Title"] = $"Eliminar - {Model.Code}";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-exclamation-triangle"></i> Confirmar Eliminación
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <i class="bi bi-info-circle"></i>
+                        ¿Estás seguro de que deseas deshabilitar este cupón?
+                    </div>
+
+                    <dl class="row">
+                        <dt class="col-sm-4">Código:</dt>
+                        <dd class="col-sm-8">
+                            <span class="badge bg-primary">@Model.Code</span>
+                        </dd>
+
+                        <dt class="col-sm-4">Tipo:</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.Type == DiscountType.Percentage)
+                            {
+                                <span class="badge bg-info">Porcentaje</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">Monto Fijo</span>
+                            }
+                        </dd>
+
+                        <dt class="col-sm-4">Valor:</dt>
+                        <dd class="col-sm-8 fw-bold">@Model.FormattedValue</dd>
+
+                        <dt class="col-sm-4">Usos:</dt>
+                        <dd class="col-sm-8">@Model.TimesUsed / @Model.MaxUsage</dd>
+
+                        <dt class="col-sm-4">Estado Actual:</dt>
+                        <dd class="col-sm-8">
+                            @if (Model.StatusText == "Activo")
+                            {
+                                <span class="badge bg-success">Activo</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Inactivo</span>
+                            }
+                        </dd>
+                    </dl>
+
+                    <hr />
+
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> Deshabilitar Cupón
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
