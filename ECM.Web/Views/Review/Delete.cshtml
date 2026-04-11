@@ -1,0 +1,66 @@
+@model ECM.Web.Models.Logistica.ReviewViewModel
+
+@{
+    ViewData["Title"] = "Eliminar Reseña";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-exclamation-triangle"></i> Confirmar Eliminación
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <i class="bi bi-info-circle"></i>
+                        ¿Estás seguro de que deseas eliminar esta reseña?
+                    </div>
+
+                    <dl class="row">
+                        <dt class="col-sm-4">Producto:</dt>
+                        <dd class="col-sm-8">@Model.ProductName</dd>
+
+                        <dt class="col-sm-4">Usuario:</dt>
+                        <dd class="col-sm-8">@Model.UserName</dd>
+
+                        <dt class="col-sm-4">Calificación:</dt>
+                        <dd class="col-sm-8">
+                            @Html.Raw(Model.StarRatingHtml) (@Model.Rating)
+                        </dd>
+
+                        <dt class="col-sm-4">Comentario:</dt>
+                        <dd class="col-sm-8">
+                            @if (!string.IsNullOrEmpty(Model.Comment))
+                            {
+                                <div class="p-2 bg-light rounded">
+                                    @Model.Comment
+                                </div>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Sin comentario</span>
+                            }
+                        </dd>
+                    </dl>
+
+                    <hr />
+
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> Eliminar Reseña
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+@using ECM.Domain.Common.Enums
+@model IEnumerable<ECM.Web.Models.Logistica.CouponViewModel>
+
+@{
+    ViewData["Title"] = "Cupones";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>
+            <i class="bi bi-ticket-perforated text-primary"></i> 
+            Cupones de Descuento
+        </h1>
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Nuevo Cupón
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Código</th>
+                            <th>Tipo</th>
+                            <th>Valor</th>
+                            <th>Mínimo</th>
+                            <th>Expiración</th>
+                            <th>Usos</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="8" class="text-center text-muted py-4">
+                                    <i class="bi bi-inbox fs-1"></i>
+                                    <p class="mt-2">No hay cupones registrados</p>
+                                </td>
+                            </tr>
+                        }
+                        @foreach (var coupon in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold text-primary">@coupon.Code</td>
+                                <td>
+                                    @if (coupon.Type == DiscountType.Percentage)
+                                    {
+                                        <span class="badge bg-info">Porcentaje</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success">Monto Fijo</span>
+                                    }
+                                </td>
+                                <td class="fw-bold">@coupon.FormattedValue</td>
+                                <td>@coupon.FormattedMinimumAmount</td>
+                                <td>
+                                    @{
+                                        var daysLeft = (coupon.ExpirationDate - DateTime.UtcNow).Days;
+                                        var dateClass = daysLeft <= 3 && daysLeft > 0 ? "text-danger" : "text-muted";
+                                    }
+                                    <span class="@dateClass">
+                                        <i class="bi bi-calendar"></i>
+                                        @coupon.ExpirationDate.ToString("dd/MM/yyyy")
+                                        @if (daysLeft <= 3 && daysLeft > 0)
+                                        {
+                                            <small class="text-danger">(Vence pronto)</small>
+                                        }
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar @(coupon.UsagePercentage >= 100 ? "bg-danger" : "bg-success")" 
+                                             role="progressbar" 
+                                             style="width: @coupon.UsagePercentage%">
+                                            @coupon.TimesUsed / @coupon.MaxUsage
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    @if (coupon.StatusText == "Activo")
+                                    {
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-check-circle"></i> Activo
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">
+                                            <i class="bi bi-x-circle"></i> Inactivo
+                                        </span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <a asp-action="Details" asp-route-id="@coupon.Id" class="btn btn-outline-info" title="Ver detalles">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a asp-action="Edit" asp-route-id="@coupon.Id" class="btn btn-outline-warning" title="Editar">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@coupon.Id" class="btn btn-outline-danger" title="Eliminar">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

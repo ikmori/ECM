@@ -1,0 +1,82 @@
+@model ECM.Web.Models.Logistica.CreateShipmentViewModel
+
+@{
+    ViewData["Title"] = "Crear Envío";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-plus-circle"></i> Crear Nuevo Envío
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="OrderId" class="form-label fw-bold"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-cart"></i></span>
+                                <input asp-for="OrderId" class="form-control" type="number" />
+                            </div>
+                            <span asp-validation-for="OrderId" class="text-danger"></span>
+                            <small class="form-text text-muted">ID de la orden a la que pertenece este envío.</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="TrackingNumber" class="form-label fw-bold"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-upc-scan"></i></span>
+                                <input asp-for="TrackingNumber" class="form-control" placeholder="Ej: 1Z999AA10123456784" />
+                            </div>
+                            <span asp-validation-for="TrackingNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CarrierName" class="form-label fw-bold"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-building"></i></span>
+                                <select asp-for="CarrierName" class="form-select">
+                                    <option value="">Seleccione...</option>
+                                    <option value="FedEx">FedEx</option>
+                                    <option value="DHL">DHL</option>
+                                    <option value="UPS">UPS</option>
+                                    <option value="USPS">USPS</option>
+                                    <option value="Correos">Correos</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                            <span asp-validation-for="CarrierName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="EstimatedDeliveryDate" class="form-label fw-bold"></label>
+                            <input asp-for="EstimatedDeliveryDate" class="form-control" type="date" />
+                            <span asp-validation-for="EstimatedDeliveryDate" class="text-danger"></span>
+                            <small class="form-text text-muted">Fecha estimada de entrega (opcional).</small>
+                        </div>
+
+                        <hr />
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Crear Envío
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

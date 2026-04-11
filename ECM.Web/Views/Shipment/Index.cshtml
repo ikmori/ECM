@@ -1,0 +1,97 @@
+@model IEnumerable<ECM.Web.Models.Logistica.ShipmentViewModel>
+
+@{
+    ViewData["Title"] = "Envíos";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>
+            <i class="bi bi-truck text-primary"></i> 
+            Gestión de Envíos
+        </h1>
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Nuevo Envío
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Tracking</th>
+                            <th>Orden #</th>
+                            <th>Transportista</th>
+                            <th>Estado</th>
+                            <th>Fecha Estimada</th>
+                            <th>Fecha Entrega</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center text-muted py-4">
+                                    <i class="bi bi-inbox fs-1"></i>
+                                    <p class="mt-2">No hay envíos registrados</p>
+                                    <a asp-action="Create" class="btn btn-primary btn-sm">
+                                        <i class="bi bi-plus-circle"></i> Crear primer envío
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                        @foreach (var shipment in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold text-primary">@shipment.TrackingNumber</td>
+                                <td>#@shipment.OrderId</td>
+                                <td>@shipment.CarrierName</td>
+                                <td>
+                                    <span class="badge bg-@shipment.StatusBadgeClass">
+                                        <i class="bi @shipment.StatusIcon"></i> @shipment.Status
+                                    </span>
+                                </td>
+                                <td>
+                                    @if (shipment.EstimatedDeliveryDate.HasValue)
+                                    {
+                                        @shipment.EstimatedDeliveryDate.Value.ToString("dd/MM/yyyy")
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">-</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (shipment.ActualDeliveryDate.HasValue)
+                                    {
+                                        <span class="text-success">@shipment.ActualDeliveryDate.Value.ToString("dd/MM/yyyy")</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">-</span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <a asp-action="Details" asp-route-id="@shipment.Id" class="btn btn-outline-info" title="Ver detalles">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a asp-action="EditStatus" asp-route-id="@shipment.Id" class="btn btn-outline-warning" title="Cambiar estado">
+                                            <i class="bi bi-truck"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@shipment.Id" class="btn btn-outline-danger" title="Eliminar">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

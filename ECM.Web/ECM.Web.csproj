@@ -28,6 +28,25 @@
       <_ContentIncludedByDefault Remove="Views\category\Details.cshtml" />
       <_ContentIncludedByDefault Remove="Views\category\Edit.cshtml" />
       <_ContentIncludedByDefault Remove="Views\category\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Coupon\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Coupon\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Coupon\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Coupon\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Coupon\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Coupon\Validate.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Review\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Review\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Review\Detailss.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Review\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Review\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Review\ProductReviews.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Review\UserReviews.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Shipment\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Shipment\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Shipment\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Shipment\EditStatus.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Shipment\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Logistica\Shipment\Track.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -43,6 +62,12 @@
       <AdditionalFiles Include="Views\category\Details.cshtml" />
       <AdditionalFiles Include="Views\category\Index.cshtml" />
       <AdditionalFiles Include="Views\product\Create.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="..\..\..\OneDrive\Desktop\changes\Controllers\CouponController.cs">
+        <Link>Controllers\Logistica\CouponController.cs</Link>
+      </Compile>
     </ItemGroup>
 
 </Project>

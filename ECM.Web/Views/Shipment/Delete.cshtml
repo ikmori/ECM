@@ -1,0 +1,57 @@
+@model ECM.Web.Models.Logistica.ShipmentViewModel
+
+@{
+    ViewData["Title"] = $"Cancelar Envío - {Model.TrackingNumber}";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-exclamation-triangle"></i> Confirmar Cancelación
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <i class="bi bi-info-circle"></i>
+                        ¿Estás seguro de que deseas cancelar este envío?
+                    </div>
+
+                    <dl class="row">
+                        <dt class="col-sm-4">Tracking:</dt>
+                        <dd class="col-sm-8">
+                            <span class="badge bg-primary">@Model.TrackingNumber</span>
+                        </dd>
+
+                        <dt class="col-sm-4">Orden #:</dt>
+                        <dd class="col-sm-8">@Model.OrderId</dd>
+
+                        <dt class="col-sm-4">Transportista:</dt>
+                        <dd class="col-sm-8">@Model.CarrierName</dd>
+
+                        <dt class="col-sm-4">Estado Actual:</dt>
+                        <dd class="col-sm-8">
+                            <span class="badge bg-@Model.StatusBadgeClass">@Model.Status</span>
+                        </dd>
+                    </dl>
+
+                    <hr />
+
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash"></i> Cancelar Envío
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

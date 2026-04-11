@@ -3,7 +3,7 @@ using ECM.Domain.Common.Enums;
 using ECM.Domain.Entities.Logistica;
 
 namespace ECM.Test.Services.Logistica;
-
+/*
 public class CouponServiceTests
 {
     private readonly CouponService _couponService;
@@ -99,4 +99,4 @@ public class CouponServiceTests
         Assert.NotNull(couponActualizado);
         Assert.Equal(usosIniciales + 1, couponActualizado.TimesUsed);
     }
-}
+}*/

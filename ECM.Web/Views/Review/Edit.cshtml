@@ -1,0 +1,96 @@
+@model ECM.Web.Models.Logistica.EditReviewViewModel
+
+@{
+    ViewData["Title"] = "Editar Reseña";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning">
+                    <h4 class="mb-0">
+                        <i class="bi bi-pencil"></i> Editar Reseña
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="ProductId" />
+                        <input type="hidden" asp-for="UserId" />
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Producto</label>
+                            <p class="form-control-plaintext">@Model.ProductName</p>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Calificación</label>
+                            <div class="rating-input">
+                                <div class="btn-group" role="group">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <button type="button" class="btn btn-outline-warning rating-star @(i <= Model.Rating ? "active" : "")" data-rating="@i">
+                                            <i class="bi bi-star-@(i <= Model.Rating ? "fill" : "") fs-3"></i>
+                                        </button>
+                                    }
+                                </div>
+                                <input type="hidden" asp-for="Rating" id="selectedRating" />
+                            </div>
+                            <span asp-validation-for="Rating" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Comment" class="form-label fw-bold"></label>
+                            <textarea asp-for="Comment" class="form-control" rows="5"></textarea>
+                            <span asp-validation-for="Comment" class="text-danger"></span>
+                        </div>
+
+                        <hr />
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="bi bi-arrow-left"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Guardar Cambios
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+        const stars = document.querySelectorAll('.rating-star');
+        const ratingInput = document.getElementById('selectedRating');
+        
+        // Inicializar rating actual
+        ratingInput.value = @Model.Rating;
+
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = parseInt(this.getAttribute('data-rating'));
+                ratingInput.value = rating;
+                
+                stars.forEach((s, index) => {
+                    const icon = s.querySelector('i');
+                    if (index < rating) {
+                        icon.classList.remove('bi-star');
+                        icon.classList.add('bi-star-fill');
+                        s.classList.add('active');
+                    } else {
+                        icon.classList.remove('bi-star-fill');
+                        icon.classList.add('bi-star');
+                        s.classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+}

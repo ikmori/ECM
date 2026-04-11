@@ -1,0 +1,72 @@
+@{
+    ViewData["Title"] = "Validar Cupón";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-gradient bg-primary text-white">
+                    <h4 class="mb-0 text-center">
+                        <i class="bi bi-check-circle"></i> Validar Cupón de Descuento
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="Validate">
+                        <div class="mb-3">
+                            <label for="code" class="form-label fw-bold">
+                                <i class="bi bi-upc-scan"></i> Código del Cupón
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-ticket"></i></span>
+                                <input type="text" name="code" id="code" class="form-control text-uppercase" 
+                                       placeholder="Ej: WELCOME10" required autocomplete="off" />
+                            </div>
+                            <small class="form-text text-muted">Ingresa el código del cupón que deseas validar.</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="orderAmount" class="form-label fw-bold">
+                                <i class="bi bi-cart"></i> Monto de la Orden
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" name="orderAmount" id="orderAmount" class="form-control" 
+                                       step="0.01" min="0" required />
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-check-lg"></i> Validar Cupón
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mt-3 bg-light">
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <i class="bi bi-info-circle"></i> ¿Cómo funciona?
+                    </h6>
+                    <ul class="small text-muted mb-0">
+                        <li>Los cupones tienen una fecha de expiración</li>
+                        <li>Algunos cupones requieren un monto mínimo de compra</li>
+                        <li>Cada cupón tiene un número limitado de usos</li>
+                        <li>El descuento se aplica automáticamente al finalizar la compra</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Convertir código a mayúsculas mientras se escribe
+        document.getElementById('code').addEventListener('input', function() {
+            this.value = this.value.toUpperCase();
+        });
+    </script>
+}

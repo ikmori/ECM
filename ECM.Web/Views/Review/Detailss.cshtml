@@ -1,0 +1,67 @@
+@model ECM.Web.Models.Logistica.ReviewViewModel
+
+@{
+    ViewData["Title"] = "Detalles de Reseña";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">
+                        <i class="bi bi-star"></i> Detalles de la Reseña
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <div class="display-1">
+                            @Html.Raw(Model.StarRatingHtml)
+                        </div>
+                        <h2 class="mt-2">@Model.Rating / 5 estrellas</h2>
+                    </div>
+
+                    <dl class="row">
+                        <dt class="col-sm-3">Producto:</dt>
+                        <dd class="col-sm-9">
+                            <strong>@Model.ProductName</strong> (ID: @Model.ProductId)
+                        </dd>
+
+                        <dt class="col-sm-3">Usuario:</dt>
+                        <dd class="col-sm-9">@Model.UserName</dd>
+
+                        <dt class="col-sm-3">Comentario:</dt>
+                        <dd class="col-sm-9">
+                            <div class="p-3 bg-light rounded">
+                                @if (!string.IsNullOrEmpty(Model.Comment))
+                                {
+                                    @Model.Comment
+                                }
+                                else
+                                {
+                                    <span class="text-muted fst-italic">Sin comentario</span>
+                                }
+                            </div>
+                        </dd>
+
+                        <dt class="col-sm-3">Fecha:</dt>
+                        <dd class="col-sm-9">@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")</dd>
+                    </dl>
+
+                    <hr />
+
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left"></i> Volver
+                        </a>
+                        <div>
+                            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                                <i class="bi bi-pencil"></i> Editar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
