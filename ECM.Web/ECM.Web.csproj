@@ -63,11 +63,7 @@
       <AdditionalFiles Include="Views\category\Index.cshtml" />
       <AdditionalFiles Include="Views\product\Create.cshtml" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Compile Include="..\..\..\OneDrive\Desktop\changes\Controllers\CouponController.cs">
-        <Link>Controllers\Logistica\CouponController.cs</Link>
-      </Compile>
-    </ItemGroup>
-
+    
+    
+    
 </Project>
