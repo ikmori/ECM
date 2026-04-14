@@ -88,8 +88,8 @@ public class CartItemService : ICartItemService
         var updatedItem = await _cartItemRepository.UpdateAsync(itemToUpdate);
         return OperationResult<CartItem>.Ok(updatedItem, "Cantidad actualizada con exito.");
     }
-    
-    
+
+
 
     public async Task<OperationResult> RemoveItemAsync(int? userId, string? guestId, int cartItemId)
     {
@@ -103,16 +103,14 @@ public class CartItemService : ICartItemService
         var cart = cartResult.Data!;
         var itemToRemove = cart.Items.FirstOrDefault(i => i.Id == cartItemId);
 
-        
+
         if (itemToRemove != null)
         {
             await _cartItemRepository.RemoveAsync(itemToRemove);
             return OperationResult.Ok("Producto eliminado exitosamente del carrito.");
         }
 
-        
+
         return OperationResult.Ok("La operacion finalizo correctamente (el producto no se encontraba en el carrito).");
     }
-
-    
 }
